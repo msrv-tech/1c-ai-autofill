@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" xmlns:mdclassExtension="http://g5.1c.ru/v8/dt/metadata/mdclass/extension" uuid="d352f881-8f7a-45bd-ac85-c7a099525794" extendedConfigurationObject="fc59acc3-f1f7-4e3f-96da-e580f2c5a88f">
+  <producedTypes>
+    <objectType typeId="1cda3e22-8c98-4f60-ba09-c5b48df9ba1f" valueTypeId="317394ed-6ce1-4255-8325-da8f0050cebe"/>
+    <refType typeId="feb7d573-4685-455a-b390-1d8428a2a8a0" valueTypeId="88dcb72d-cafb-4287-a9bf-b22f7c7f7707"/>
+    <selectionType typeId="73de7105-a437-40c8-bc68-6cc0d401eb8b" valueTypeId="943db3e3-9a2f-4898-bfc3-dd1342f11a53"/>
+    <listType typeId="5017e282-7185-4473-97af-15aa9496b37a" valueTypeId="c9bf1abf-52be-4664-8ed1-571bf9d1f887"/>
+    <managerType typeId="17686a22-c898-4f76-ac34-4ee5fb413ea9" valueTypeId="4707f67e-111a-43ef-b0ef-09e17ad03b2b"/>
+  </producedTypes>
+  <name>Номенклатура</name>
+  <objectBelonging>Adopted</objectBelonging>
+  <extension xsi:type="mdclassExtension:CatalogExtension">
+    <extendedConfigurationObject>Checked</extendedConfigurationObject>
+  </extension>
+  <tabularSections uuid="fe9883a3-ba6c-408b-9180-07e3c00b667e" extendedConfigurationObject="344b6917-b413-4fae-aadd-d62836822de6">
+    <producedTypes>
+      <objectType typeId="c7ec843b-ac24-4f9e-be55-32fc36d50a2e" valueTypeId="bb5fa9b0-db43-49bb-83ec-8c3c55aeb384"/>
+      <rowType typeId="b7338eaf-fe47-4155-a36a-02cd32468b66" valueTypeId="81b352a6-a5b0-44a8-b06b-57bed53db482"/>
+    </producedTypes>
+    <name>ДополнительныеРеквизиты</name>
+    <objectBelonging>Adopted</objectBelonging>
+    <extension xsi:type="mdclassExtension:MdObjectExtension">
+      <extendedConfigurationObject>Checked</extendedConfigurationObject>
+    </extension>
+    <attributes uuid="4e88a624-e637-4782-b57c-5b7a73ebcf04" extendedConfigurationObject="3ebfaae7-710d-4b97-aff3-149de91a4f89">
+      <name>Свойство</name>
+      <objectBelonging>Adopted</objectBelonging>
+      <extension xsi:type="mdclassExtension:BasicFeatureExtension">
+        <extendedConfigurationObject>Checked</extendedConfigurationObject>
+        <typeExtension>
+          <types>
+            <state>Checked</state>
+            <type>ChartOfCharacteristicTypesRef.ДополнительныеРеквизитыИСведения</type>
+          </types>
+        </typeExtension>
+      </extension>
+      <type/>
+    </attributes>
+    <attributes uuid="909988ad-ec3e-4d9c-af5b-177e4be17b47" extendedConfigurationObject="c122409e-0e2f-4354-a036-4e8f6440b616">
+      <name>Значение</name>
+      <objectBelonging>Adopted</objectBelonging>
+      <extension xsi:type="mdclassExtension:BasicFeatureExtension">
+        <extendedConfigurationObject>Checked</extendedConfigurationObject>
+        <typeExtension>
+          <types>
+            <state>Checked</state>
+            <type>Characteristic.ДополнительныеРеквизитыИСведения</type>
+          </types>
+        </typeExtension>
+      </extension>
+      <type/>
+    </attributes>
+    <attributes uuid="ed6b6e0e-8232-496f-94a3-be14771f70dc" extendedConfigurationObject="5363533d-b1e1-4a07-9310-a2e3bab7ca05">
+      <name>ТекстоваяСтрока</name>
+      <objectBelonging>Adopted</objectBelonging>
+      <extension xsi:type="mdclassExtension:BasicFeatureExtension">
+        <extendedConfigurationObject>Checked</extendedConfigurationObject>
+        <typeExtension>
+          <types>
+            <state>Checked</state>
+            <type>String</type>
+          </types>
+          <stringQualifiers/>
+        </typeExtension>
+      </extension>
+      <type/>
+    </attributes>
+  </tabularSections>
+  <forms uuid="f8700c9e-a788-446f-9125-dae26e383a03" extendedConfigurationObject="41c80aa8-4fc3-49dd-82ef-95812b6326fa">
+    <name>ФормаЭлемента</name>
+    <objectBelonging>Adopted</objectBelonging>
+    <extension xsi:type="mdclassExtension:BasicFormExtension">
+      <extendedConfigurationObject>Checked</extendedConfigurationObject>
+      <form>Extended</form>
+    </extension>
+  </forms>
+</mdclass:Catalog>
