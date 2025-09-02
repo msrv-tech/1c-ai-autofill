@@ -127,7 +127,7 @@
                   <typeDomainEnabled>true</typeDomainEnabled>
                   <textEdit>true</textEdit>
                   <backColor xsi:type="core:ColorRef">
-                    <color>Style.ЦветФонаВыделения</color>
+                    <color>0</color>
                   </backColor>
                 </extInfo>
               </items>
@@ -388,7 +388,7 @@
               <typeDomainEnabled>true</typeDomainEnabled>
               <textEdit>true</textEdit>
               <backColor xsi:type="core:ColorRef">
-                <color>Style.ЦветФонаВыделения</color>
+                <color>0</color>
               </backColor>
             </extInfo>
           </items>
@@ -1219,7 +1219,7 @@
                       <value>Добавить изображение</value>
                     </nonselectedPictureText>
                     <textColor xsi:type="core:ColorRef">
-                      <color>Style.ЦветТекстаНевыбраннойКартинки</color>
+                      <color>0</color>
                     </textColor>
                     <border xsi:type="core:BorderDef">
                       <style>Single</style>
@@ -2836,7 +2836,7 @@
                     <type>Label</type>
                     <autoMaxHeight>true</autoMaxHeight>
                     <textColor xsi:type="core:ColorRef">
-                      <color>Style.ТекстИнформационнойНадписи</color>
+                      <color>0</color>
                     </textColor>
                     <extInfo xsi:type="form:LabelDecorationExtInfo">
                       <horizontalAlign>Left</horizontalAlign>
@@ -3124,7 +3124,7 @@
                     <type>Label</type>
                     <autoMaxHeight>true</autoMaxHeight>
                     <textColor xsi:type="core:ColorRef">
-                      <color>Style.ТекстИнформационнойНадписи</color>
+                      <color>0</color>
                     </textColor>
                     <extInfo xsi:type="form:LabelDecorationExtInfo">
                       <horizontalAlign>Left</horizontalAlign>
@@ -3439,7 +3439,7 @@
                   <typeDomainEnabled>true</typeDomainEnabled>
                   <textEdit>true</textEdit>
                   <backColor xsi:type="core:ColorRef">
-                    <color>Style.ЦветФонаВыделения</color>
+                    <color>0</color>
                   </backColor>
                 </extInfo>
               </items>
@@ -3907,7 +3907,7 @@
                 <extInfo xsi:type="form:LabelFieldExtInfo">
                   <autoMaxHeight>true</autoMaxHeight>
                   <textColor xsi:type="core:ColorRef">
-                    <color>Style.ПоясняющийТекст</color>
+                    <color>0</color>
                   </textColor>
                 </extInfo>
               </items>
@@ -7058,6 +7058,9 @@
                     <userVisible>
                       <common>true</common>
                     </userVisible>
+                    <dataPath xsi:type="form:DataPath">
+                      <segments>Объект.ДрагоценныеМатериалы.LineNumber</segments>
+                    </dataPath>
                     <extendedTooltip>
                       <name>ДрагоценныеМатериалыНомерСтрокиРасширеннаяПодсказка</name>
                       <id>1515</id>
@@ -7395,7 +7398,7 @@
                   <value>Содержание драгоценных материалов</value>
                 </title>
                 <titleTextColor xsi:type="core:ColorRef">
-                  <color>Style.ГиперссылкаЦвет</color>
+                  <color>0</color>
                 </titleTextColor>
                 <enableContentChange>true</enableContentChange>
                 <horizontalStretch>false</horizontalStretch>
@@ -8146,7 +8149,7 @@
                 <extInfo xsi:type="form:LabelFieldExtInfo">
                   <autoMaxHeight>true</autoMaxHeight>
                   <textColor xsi:type="core:ColorRef">
-                    <color>Style.ПоясняющийТекст</color>
+                    <color>0</color>
                   </textColor>
                 </extInfo>
               </items>
@@ -8230,7 +8233,7 @@
                   <autoMaxWidth>true</autoMaxWidth>
                   <autoMaxHeight>true</autoMaxHeight>
                   <textColor xsi:type="core:ColorRef">
-                    <color>Style.ПоясняющийТекст</color>
+                    <color>0</color>
                   </textColor>
                 </extInfo>
               </items>
@@ -8313,7 +8316,7 @@
                 <extInfo xsi:type="form:LabelFieldExtInfo">
                   <autoMaxHeight>true</autoMaxHeight>
                   <textColor xsi:type="core:ColorRef">
-                    <color>Style.ПоясняющийТекст</color>
+                    <color>0</color>
                   </textColor>
                 </extInfo>
               </items>
@@ -8397,7 +8400,7 @@
                   <autoMaxWidth>true</autoMaxWidth>
                   <autoMaxHeight>true</autoMaxHeight>
                   <textColor xsi:type="core:ColorRef">
-                    <color>Style.ПоясняющийТекст</color>
+                    <color>0</color>
                   </textColor>
                 </extInfo>
               </items>
@@ -8475,7 +8478,7 @@
                   <autoMaxWidth>true</autoMaxWidth>
                   <autoMaxHeight>true</autoMaxHeight>
                   <textColor xsi:type="core:ColorRef">
-                    <color>Style.ПоясняющийТекст</color>
+                    <color>0</color>
                   </textColor>
                 </extInfo>
               </items>
@@ -9848,7 +9851,7 @@
               <horizontalAlign>Left</horizontalAlign>
             </extInfo>
           </extendedTooltip>
-          <commandName>CommonCommand.ЗадачиПоПредмету</commandName>
+          <commandName>0</commandName>
           <representation>Auto</representation>
           <autoMaxWidth>true</autoMaxWidth>
           <autoMaxHeight>true</autoMaxHeight>
@@ -9873,7 +9876,7 @@
               <horizontalAlign>Left</horizontalAlign>
             </extInfo>
           </extendedTooltip>
-          <commandName>CommonCommand.ИсторияИзменений</commandName>
+          <commandName>0</commandName>
           <representation>Auto</representation>
           <autoMaxWidth>true</autoMaxWidth>
           <autoMaxHeight>true</autoMaxHeight>
@@ -9898,7 +9901,7 @@
               <horizontalAlign>Left</horizontalAlign>
             </extInfo>
           </extendedTooltip>
-          <commandName>CommonCommand.МоиЗаметкиПоПредмету</commandName>
+          <commandName>0</commandName>
           <representation>Auto</representation>
           <autoMaxWidth>true</autoMaxWidth>
           <autoMaxHeight>true</autoMaxHeight>
@@ -10049,4 +10052,5 @@
     <navigationPanel/>
     <commandBar/>
   </commandInterface>
+  <extInfo xsi:type="form:CatalogFormExtInfo"/>
 </form:Form>

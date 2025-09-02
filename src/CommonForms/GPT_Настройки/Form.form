@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form:Form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://g5.1c.ru/v8/dt/mcore" xmlns:form="http://g5.1c.ru/v8/dt/form">
+  <items xsi:type="form:Decoration">
+    <name>Ссылка</name>
+    <id>31</id>
+    <title>
+      <key>ru</key>
+      <value>https://gitsell.ru/msrv-tech/1c-ai-autofill</value>
+    </title>
+    <visible>true</visible>
+    <enabled>true</enabled>
+    <userVisible>
+      <common>true</common>
+    </userVisible>
+    <extendedTooltip>
+      <name>СсылкаРасширеннаяПодсказка</name>
+      <id>33</id>
+      <type>Label</type>
+      <autoMaxWidth>true</autoMaxWidth>
+      <autoMaxHeight>true</autoMaxHeight>
+      <extInfo xsi:type="form:LabelDecorationExtInfo">
+        <horizontalAlign>Left</horizontalAlign>
+      </extInfo>
+    </extendedTooltip>
+    <contextMenu>
+      <name>СсылкаКонтекстноеМеню</name>
+      <id>32</id>
+      <autoFill>true</autoFill>
+    </contextMenu>
+    <type>Label</type>
+    <autoMaxWidth>true</autoMaxWidth>
+    <autoMaxHeight>true</autoMaxHeight>
+    <extInfo xsi:type="form:LabelDecorationExtInfo">
+      <handlers>
+        <event>Click</event>
+        <name>СсылкаНажатие</name>
+      </handlers>
+      <hyperlink>true</hyperlink>
+      <horizontalAlign>Left</horizontalAlign>
+    </extInfo>
+  </items>
   <items xsi:type="form:FormField">
     <name>Токен</name>
     <id>1</id>
@@ -260,7 +299,7 @@
     <headerHorizontalAlign>Left</headerHorizontalAlign>
     <showInFooter>true</showInFooter>
     <extInfo xsi:type="form:InputFieldExtInfo">
-      <autoMaxHeight>true</autoMaxHeight>
+      <height>3</height>
       <wrap>true</wrap>
       <multiLine>true</multiLine>
       <chooseType>true</chooseType>
@@ -304,9 +343,97 @@
       <showInFooter>true</showInFooter>
       <extInfo xsi:type="form:CheckBoxFieldExtInfo"/>
     </items>
+    <items xsi:type="form:Decoration">
+      <name>ПроксиПоставляемый</name>
+      <id>34</id>
+      <title>
+        <key>ru</key>
+        <value>https://gitsell.ru/msrv-tech/API_proxy</value>
+      </title>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <extendedTooltip>
+        <name>ПроксиПоставляемыйРасширеннаяПодсказка</name>
+        <id>36</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <contextMenu>
+        <name>ПроксиПоставляемыйКонтекстноеМеню</name>
+        <id>35</id>
+        <autoFill>true</autoFill>
+      </contextMenu>
+      <type>Label</type>
+      <autoMaxWidth>true</autoMaxWidth>
+      <autoMaxHeight>true</autoMaxHeight>
+      <extInfo xsi:type="form:LabelDecorationExtInfo">
+        <handlers>
+          <event>Click</event>
+          <name>ПроксиПоставляемыйНажатие</name>
+        </handlers>
+        <hyperlink>true</hyperlink>
+        <horizontalAlign>Left</horizontalAlign>
+      </extInfo>
+    </items>
+    <items xsi:type="form:FormField">
+      <name>ТокенAPI_proxy</name>
+      <id>40</id>
+      <visible>true</visible>
+      <enabled>true</enabled>
+      <userVisible>
+        <common>true</common>
+      </userVisible>
+      <dataPath xsi:type="form:DataPath">
+        <segments>ТокенAPI_proxy</segments>
+      </dataPath>
+      <toolTip>
+        <key>ru</key>
+        <value>Необходимо заполнить если используете API_proxy</value>
+      </toolTip>
+      <toolTipRepresentation>Button</toolTipRepresentation>
+      <extendedTooltip>
+        <name>ТокенAPI_proxyРасширеннаяПодсказка</name>
+        <id>42</id>
+        <type>Label</type>
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <extInfo xsi:type="form:LabelDecorationExtInfo">
+          <horizontalAlign>Left</horizontalAlign>
+        </extInfo>
+      </extendedTooltip>
+      <contextMenu>
+        <name>ТокенAPI_proxyКонтекстноеМеню</name>
+        <id>41</id>
+        <autoFill>true</autoFill>
+      </contextMenu>
+      <type>InputField</type>
+      <editMode>Enter</editMode>
+      <showInHeader>true</showInHeader>
+      <headerHorizontalAlign>Left</headerHorizontalAlign>
+      <showInFooter>true</showInFooter>
+      <extInfo xsi:type="form:InputFieldExtInfo">
+        <autoMaxWidth>true</autoMaxWidth>
+        <autoMaxHeight>true</autoMaxHeight>
+        <wrap>true</wrap>
+        <chooseType>true</chooseType>
+        <typeDomainEnabled>true</typeDomainEnabled>
+        <textEdit>true</textEdit>
+      </extInfo>
+    </items>
     <items xsi:type="form:FormField">
       <name>АдресПроксиСервера</name>
       <id>17</id>
+      <title>
+        <key>ru</key>
+        <value>Адрес прокси сервера</value>
+      </title>
       <visible>true</visible>
       <enabled>true</enabled>
       <userVisible>
@@ -315,6 +442,11 @@
       <dataPath xsi:type="form:DataPath">
         <segments>АдресПроксиСервера</segments>
       </dataPath>
+      <toolTip>
+        <key>ru</key>
+        <value>Адрес прокси сервера поставляемы API proxy или свой</value>
+      </toolTip>
+      <toolTipRepresentation>Button</toolTipRepresentation>
       <extendedTooltip>
         <name>АдресПроксиСервераРасширеннаяПодсказка</name>
         <id>19</id>
@@ -366,7 +498,7 @@
     </extendedTooltip>
     <type>UsualGroup</type>
     <extInfo xsi:type="form:UsualGroupExtInfo">
-      <group>HorizontalIfPossible</group>
+      <group>Vertical</group>
       <behavior>Auto</behavior>
       <showLeftMargin>true</showLeftMargin>
       <united>true</united>
@@ -590,6 +722,24 @@
       <stringQualifiers>
         <length>50</length>
       </stringQualifiers>
+    </valueType>
+    <view>
+      <common>true</common>
+    </view>
+    <edit>
+      <common>true</common>
+    </edit>
+  </attributes>
+  <attributes>
+    <name>ТокенAPI_proxy</name>
+    <title>
+      <key>ru</key>
+      <value>Токен API proxy</value>
+    </title>
+    <id>9</id>
+    <valueType>
+      <types>String</types>
+      <stringQualifiers/>
     </valueType>
     <view>
       <common>true</common>

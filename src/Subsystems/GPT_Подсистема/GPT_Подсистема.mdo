@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdclass:Subsystem xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="073fb519-8953-412f-ab69-c925d2b15e8c">
+  <name>GPT_Подсистема</name>
+  <synonym>
+    <key>ru</key>
+    <value>ИИ</value>
+  </synonym>
+  <includeHelpInContents>true</includeHelpInContents>
+  <includeInCommandInterface>true</includeInCommandInterface>
+  <content>CommonModule.GPT_ОбщийМодульСервер</content>
+  <content>CommonModule.GPT_ОбщийМодульКлиент</content>
+  <content>CommonModule.GPT_ОбщийВызовСервера</content>
+  <content>Role.GPT_ОсновнаяРоль</content>
+  <content>CommonCommand.GPT_ОткрытьНастройки</content>
+  <content>CommonForm.GPT_Настройки</content>
+  <content>Catalog.GPT_Настройка</content>
+</mdclass:Subsystem>

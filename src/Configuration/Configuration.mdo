@@ -28,10 +28,9 @@
   <usePurposes>PersonalComputer</usePurposes>
   <scriptVariant>Russian</scriptVariant>
   <defaultRoles>Role.GPT_ОсновнаяРоль</defaultRoles>
-  <version>1.8</version>
+  <version>1.8.2</version>
   <defaultLanguage>Language.Русский</defaultLanguage>
   <interfaceCompatibilityMode>TaxiEnableVersion8_2</interfaceCompatibilityMode>
-  <compatibilityMode>8.3.25</compatibilityMode>
   <languages uuid="ae4560c7-1dcb-4645-8f39-e1c75270f2ca" extendedConfigurationObject="0663bf5b-bcba-4a40-a862-a0b3baa2d884">
     <name>Русский</name>
     <objectBelonging>Adopted</objectBelonging>
@@ -41,6 +40,7 @@
     </extension>
     <languageCode>ru</languageCode>
   </languages>
+  <subsystems>Subsystem.GPT_Подсистема</subsystems>
   <subsystems>Subsystem.Администрирование</subsystems>
   <styleItems>StyleItem.ЦветФонаВыделения</styleItems>
   <styleItems>StyleItem.ЦветТекстаНевыбраннойКартинки</styleItems>
