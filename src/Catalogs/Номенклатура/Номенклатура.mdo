@@ -12,60 +12,6 @@
   <extension xsi:type="mdclassExtension:CatalogExtension">
     <extendedConfigurationObject>Checked</extendedConfigurationObject>
   </extension>
-  <tabularSections uuid="fe9883a3-ba6c-408b-9180-07e3c00b667e" extendedConfigurationObject="344b6917-b413-4fae-aadd-d62836822de6">
-    <producedTypes>
-      <objectType typeId="c7ec843b-ac24-4f9e-be55-32fc36d50a2e" valueTypeId="bb5fa9b0-db43-49bb-83ec-8c3c55aeb384"/>
-      <rowType typeId="b7338eaf-fe47-4155-a36a-02cd32468b66" valueTypeId="81b352a6-a5b0-44a8-b06b-57bed53db482"/>
-    </producedTypes>
-    <name>ДополнительныеРеквизиты</name>
-    <objectBelonging>Adopted</objectBelonging>
-    <extension xsi:type="mdclassExtension:MdObjectExtension">
-      <extendedConfigurationObject>Checked</extendedConfigurationObject>
-    </extension>
-    <attributes uuid="4e88a624-e637-4782-b57c-5b7a73ebcf04" extendedConfigurationObject="3ebfaae7-710d-4b97-aff3-149de91a4f89">
-      <name>Свойство</name>
-      <objectBelonging>Adopted</objectBelonging>
-      <extension xsi:type="mdclassExtension:BasicFeatureExtension">
-        <extendedConfigurationObject>Checked</extendedConfigurationObject>
-        <typeExtension>
-          <types>
-            <state>Checked</state>
-            <type>ChartOfCharacteristicTypesRef.ДополнительныеРеквизитыИСведения</type>
-          </types>
-        </typeExtension>
-      </extension>
-      <type/>
-    </attributes>
-    <attributes uuid="909988ad-ec3e-4d9c-af5b-177e4be17b47" extendedConfigurationObject="c122409e-0e2f-4354-a036-4e8f6440b616">
-      <name>Значение</name>
-      <objectBelonging>Adopted</objectBelonging>
-      <extension xsi:type="mdclassExtension:BasicFeatureExtension">
-        <extendedConfigurationObject>Checked</extendedConfigurationObject>
-        <typeExtension>
-          <types>
-            <state>Checked</state>
-            <type>Characteristic.ДополнительныеРеквизитыИСведения</type>
-          </types>
-        </typeExtension>
-      </extension>
-      <type/>
-    </attributes>
-    <attributes uuid="ed6b6e0e-8232-496f-94a3-be14771f70dc" extendedConfigurationObject="5363533d-b1e1-4a07-9310-a2e3bab7ca05">
-      <name>ТекстоваяСтрока</name>
-      <objectBelonging>Adopted</objectBelonging>
-      <extension xsi:type="mdclassExtension:BasicFeatureExtension">
-        <extendedConfigurationObject>Checked</extendedConfigurationObject>
-        <typeExtension>
-          <types>
-            <state>Checked</state>
-            <type>String</type>
-          </types>
-          <stringQualifiers/>
-        </typeExtension>
-      </extension>
-      <type/>
-    </attributes>
-  </tabularSections>
   <forms uuid="f8700c9e-a788-446f-9125-dae26e383a03" extendedConfigurationObject="41c80aa8-4fc3-49dd-82ef-95812b6326fa">
     <name>ФормаЭлемента</name>
     <objectBelonging>Adopted</objectBelonging>

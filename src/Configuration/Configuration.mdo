@@ -41,15 +41,6 @@
     <languageCode>ru</languageCode>
   </languages>
   <subsystems>Subsystem.GPT_Подсистема</subsystems>
-  <subsystems>Subsystem.Администрирование</subsystems>
-  <styleItems>StyleItem.ЦветФонаВыделения</styleItems>
-  <styleItems>StyleItem.ЦветТекстаНевыбраннойКартинки</styleItems>
-  <styleItems>StyleItem.ТекстИнформационнойНадписи</styleItems>
-  <styleItems>StyleItem.ПоясняющийТекст</styleItems>
-  <styleItems>StyleItem.ГиперссылкаЦвет</styleItems>
-  <commonPictures>CommonPicture.ЗаполнитьПоШаблону</commonPictures>
-  <commonPictures>CommonPicture.Отчеты</commonPictures>
-  <commonPictures>CommonPicture.ЗаполнитьФорму</commonPictures>
   <roles>Role.GPT_ОсновнаяРоль</roles>
   <commonModules>CommonModule.GPT_ОбщийМодульСервер</commonModules>
   <commonModules>CommonModule.GPT_ОбщийМодульКлиент</commonModules>
@@ -57,9 +48,6 @@
   <commonModules>CommonModule.УправлениеСвойствами</commonModules>
   <exchangePlans>ExchangePlan.МиграцияПриложений</exchangePlans>
   <commonCommands>CommonCommand.GPT_ОткрытьНастройки</commonCommands>
-  <commonCommands>CommonCommand.ЗадачиПоПредмету</commonCommands>
-  <commonCommands>CommonCommand.ИсторияИзменений</commonCommands>
-  <commonCommands>CommonCommand.МоиЗаметкиПоПредмету</commonCommands>
   <commonForms>CommonForm.GPT_Настройки</commonForms>
   <catalogs>Catalog.GPT_Настройка</catalogs>
   <catalogs>Catalog.Номенклатура</catalogs>
