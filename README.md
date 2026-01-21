@@ -1,6 +1,10 @@
 # 1C AI Autofill
 
-Расширение для автоматического заполнения описаний и дополнительных реквизитов номенклатуры с помощью AI (Gitsell).
+> **Сборки под разные конфигурации 1С** лежат в [Releases](https://github.com/msrv-tech/1c-ai-autofill/releases): `UNF_Rozn_*` (УНФ/Розница) и `UT_KA_ERP_*` (УТ11/КА/ERP).
+
+Расширение для **1С:Предприятие 8.3** (BSL) для автоматической генерации **продающих описаний товара** и автозаполнения **дополнительных реквизитов/характеристик номенклатуры** с помощью AI через прокси‑сервис **Gitsell**.
+
+**Ключевые слова (для поиска):** 1С, 1C:Enterprise, 1C Enterprise 8, 1С:Предприятие 8.3, BSL, 1С расширение (`.cfe`), управляемые формы, номенклатура, карточка товара, интернет‑магазин, маркетплейсы, УНФ, Розница, УТ11, КА, ERP, автозаполнение, AI, GPT, GigaChat, YandexGPT, OpenAI.
 
 ## Область применения
 Данное расширение будет полезно всем владельцам интернет-магазинов, каталога товаров и продающим через маркетплейсы. Расширение создает уникальное продающее описание товара по его наименованию, а также может заполнять дополнительные реквизиты (характеристики).
@@ -58,3 +62,7 @@
 <img width="1679" height="461" alt="image" src="https://github.com/user-attachments/assets/80a6fb84-8710-4d95-8e6b-8abbd2fb98d7" />
 <img width="647" height="482" alt="image" src="https://github.com/user-attachments/assets/28912d08-9e21-4543-a7a2-8585e1dbadb0" />
 
+---
+
+## English (short)
+**1C AI Autofill** is a **1C:Enterprise 8.3 extension** (`.cfe`, BSL) that generates product descriptions and fills custom attributes for items (nomenclature) using AI via **Gitsell** proxy API.
