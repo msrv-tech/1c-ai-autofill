@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ConfigDumpInfo xmlns="http://v8.1c.ru/8.3/xcf/dumpinfo" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" format="Hierarchical" version="2.21">
+	<ConfigVersions>
+		<Metadata name="Catalog.GPT_Настройка" id="3908ff39-aede-466c-8e5a-7cdf7659c421" configVersion="8bddf209b1476d79296994f2382404603aa73eeb">
+			<Metadata name="Catalog.GPT_Настройка.Attribute.Токен" id="37b70596-dff1-446b-b8f8-e6271b238e52"/>
+			<Metadata name="Catalog.GPT_Настройка.Attribute.МодельИИ" id="46d6fc8c-bf91-439d-b84f-e6d90cc635ad"/>
+			<Metadata name="Catalog.GPT_Настройка.Attribute.ПромтДопСвойства" id="989bade1-2bd2-42ba-82c3-89a9d799d308"/>
+			<Metadata name="Catalog.GPT_Настройка.Attribute.Email" id="c5d7a8e1-b2f3-4c4d-9e5f-6a7b8c9d0e1f"/>
+			<Metadata name="Catalog.GPT_Настройка.Attribute.АдресСервера" id="c9b47462-6384-476b-b287-62e563600f31"/>
+			<Metadata name="Catalog.GPT_Настройка.Attribute.ДополнительныеСвойстваХранилище" id="d3b9ea2a-f828-4425-9430-3760663bfdfe"/>
+			<Metadata name="Catalog.GPT_Настройка.Attribute.ПромтОписание" id="e67c0919-44fe-4a3f-a143-dc2e944ec1eb"/>
+			<Metadata name="Catalog.GPT_Настройка.Attribute.АвтоматическиЗаполнятьОписание" id="fcce8cd9-907e-4e10-8741-6ee93ad80efe"/>
+		</Metadata>
+		<Metadata name="Catalog.Номенклатура" id="d352f881-8f7a-45bd-ac85-c7a099525794" configVersion="228635f9b628217b1ac111085004f9b5c55f801a"/>
+		<Metadata name="Catalog.Номенклатура.Form.ФормаЭлемента" id="f8700c9e-a788-446f-9125-dae26e383a03" configVersion="8bd2bd45a775d499df96d1e76601e927e31f320b"/>
+		<Metadata name="Catalog.Номенклатура.Form.ФормаЭлемента.Form" id="f8700c9e-a788-446f-9125-dae26e383a03.0" configVersion="81cbf0510e4e299eb474507279a555e70c7253f0"/>
+		<Metadata name="ChartOfCharacteristicTypes.ДополнительныеРеквизитыИСведения" id="c9071611-c6ba-476c-9dc6-9661c1521272" configVersion="6c7a7c0ef0e5e798191b8d33dd93399d9962c7bb"/>
+		<Metadata name="CommonCommand.GPT_ОткрытьНастройки" id="510a3cc7-ce99-419b-b882-4ebe4ce660ba" configVersion="e8287b59e4aacb52fde56dd5fafe5cc694476103"/>
+		<Metadata name="CommonCommand.GPT_ОткрытьНастройки.CommandModule" id="510a3cc7-ce99-419b-b882-4ebe4ce660ba.2" configVersion="e7618a7c6e1c3f296dab187e6b14ab8f40b086fa"/>
+		<Metadata name="CommonForm.GPT_Настройки" id="39b2fc4b-bf7d-4071-9977-fb6589234f49" configVersion="f3c4522ffc35096fd97ee46e01728e3849388ca9"/>
+		<Metadata name="CommonForm.GPT_Настройки.Form" id="39b2fc4b-bf7d-4071-9977-fb6589234f49.0" configVersion="e83ec9ab6116aad9a7851e538f86f4e6957f5bc4"/>
+		<Metadata name="CommonForm.GPT_Регистрация" id="896cfed2-354e-4eaf-b5ba-73c3b5f2c5b8" configVersion="0018f1aec924d44c1cbcd7f45b23caa84f938219"/>
+		<Metadata name="CommonForm.GPT_Регистрация.Form" id="896cfed2-354e-4eaf-b5ba-73c3b5f2c5b8.0" configVersion="2cda5a728bc848d9b85e932ee91662005bdd034a"/>
+		<Metadata name="CommonModule.GPT_GitsellСервер" id="4d300a3d-3314-4535-8363-bdc2fb5eff36" configVersion="0fbba879fbbb5e004976a6275d9eb4ef47c2dfd5"/>
+		<Metadata name="CommonModule.GPT_GitsellСервер.Module" id="4d300a3d-3314-4535-8363-bdc2fb5eff36.0" configVersion="de34f61b10f641f33251619c6e1a56aed624120f"/>
+		<Metadata name="CommonModule.GPT_ОбщийВызовСервера" id="6849d2f3-db26-4055-9bb0-7172f79b2174" configVersion="cae7c45c9e5466fb90846716a6a7425d0793f0f5"/>
+		<Metadata name="CommonModule.GPT_ОбщийВызовСервера.Module" id="6849d2f3-db26-4055-9bb0-7172f79b2174.0" configVersion="e2fb0d9d9b8561ca15838ed3ac056891dd90a541"/>
+		<Metadata name="CommonModule.GPT_ОбщийМодульКлиент" id="7acd0f1b-1f74-4917-8959-ec27f5e227aa" configVersion="08a4c3e60d7fae225a1979a828619623e5d2bcd8"/>
+		<Metadata name="CommonModule.GPT_ОбщийМодульКлиент.Module" id="7acd0f1b-1f74-4917-8959-ec27f5e227aa.0" configVersion="72071fc8c802f962728c6ef1c25e709450bd13ce"/>
+		<Metadata name="CommonModule.GPT_ОбщийМодульСервер" id="7e185b95-0704-4229-83b1-1f259bfbe6bd" configVersion="0fbb5f3c9987db35b6fe0f3493e88987d1a19833"/>
+		<Metadata name="CommonModule.GPT_ОбщийМодульСервер.Module" id="7e185b95-0704-4229-83b1-1f259bfbe6bd.0" configVersion="c70cb38b09674e24db445a79f9bae045a79c0545"/>
+		<Metadata name="CommonModule.УправлениеСвойствами" id="ab42fb36-10cb-4a43-8749-c054fa5210ba" configVersion="9c76bc37b21bba1d3a34064e07df58dc5c5ee28f"/>
+		<Metadata name="CommonModule.УправлениеСвойствами.Module" id="ab42fb36-10cb-4a43-8749-c054fa5210ba.0" configVersion="adf144960de3a1cce882866aa59397755e1e8704"/>
+		<Metadata name="Configuration.GPT_ОписаниеНоменклатуры" id="6e72a230-36ea-4d78-90ca-0b03c26a0183" configVersion="7b0172e2d339ceeb9c473383dcb6b9ac7672d887"/>
+		<Metadata name="ExchangePlan.МиграцияПриложений" id="6c2dd456-cb16-42df-ab46-2c5e6cc7f86f" configVersion="dd160e825e519da0b57b5894fa3b41b24b965277"/>
+		<Metadata name="ExchangePlan.МиграцияПриложений.Content" id="6c2dd456-cb16-42df-ab46-2c5e6cc7f86f.1" configVersion="38ab6726c47f0378ba56360298c40e7c2bf0052d"/>
+		<Metadata name="Language.Русский" id="ae4560c7-1dcb-4645-8f39-e1c75270f2ca" configVersion="0a1d5d3e2e01cdd9cc60d50dff2e1b389f639c7d"/>
+		<Metadata name="Role.GPT_ОсновнаяРоль" id="4a8475c9-17f8-4b5e-bb6a-f4b0b8cfa8ab" configVersion="859eeff1de6369bad97f0a376c8b60aa460c104c"/>
+		<Metadata name="Role.GPT_ОсновнаяРоль.Rights" id="4a8475c9-17f8-4b5e-bb6a-f4b0b8cfa8ab.0" configVersion="c506776e4a21009353cb3b48babb963847b1a521"/>
+		<Metadata name="Subsystem.GPT_Подсистема" id="073fb519-8953-412f-ab69-c925d2b15e8c" configVersion="2682984b92c5e88e4123e100dd45ef2bd5edd565"/>
+		<Metadata name="Subsystem.GPT_Подсистема.CommandInterface" id="073fb519-8953-412f-ab69-c925d2b15e8c.1" configVersion="8be562c81ce1a3f27321c93a01ff35e65084b73d"/>
+	</ConfigVersions>
+</ConfigDumpInfo>

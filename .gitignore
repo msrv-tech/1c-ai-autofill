@@ -1,0 +1,29 @@
+# EDT/Eclipse служебные файлы
+.metadata/
+.project
+.classpath
+.settings/
+*.launch
+
+# Скомпилированные файлы (исключая уже отслеживаемые)
+# bin/ уже в репозитории, новые файлы игнорируются
+*.cfu
+
+# Временные файлы
+*.log
+*.lock
+*.tmp
+
+# OS файлы
+.DS_Store
+Thumbs.db
+
+# IDE файлы
+.idea/
+*.iml
+.vscode/
+
+# 1C временные файлы
+*.lst
+*.epf~
+*.epf.lock

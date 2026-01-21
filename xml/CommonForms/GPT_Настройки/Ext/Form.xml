@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:pal="http://v8.1c.ru/8.1/data/ui/colors/palette" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.21">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<ChildItems>
+			<Button name="ФормаСохранить" id="10">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.Сохранить</CommandName>
+				<ExtendedTooltip name="ФормаСохранитьРасширеннаяПодсказка" id="11"/>
+			</Button>
+			<Button name="ФормаОтмена" id="12">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Отмена</CommandName>
+				<ExtendedTooltip name="ФормаОтменаРасширеннаяПодсказка" id="13"/>
+			</Button>
+			<Button name="ФормаЗарегистрироваться" id="100">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Зарегистрироваться</CommandName>
+				<ExtendedTooltip name="ФормаЗарегистрироватьсяРасширеннаяПодсказка" id="113"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаОбновление" id="200">
+			<Visible>false</Visible>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновление</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Representation>StrongSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<DataPath>ЕстьОбновление</DataPath>
+			<ExtendedTooltip name="ГруппаОбновлениеРасширеннаяПодсказка" id="201"/>
+			<ChildItems>
+				<LabelDecoration name="НадписьОбновление" id="202">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Доступна новая версия:</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="НадписьОбновлениеКонтекстноеМеню" id="203"/>
+					<ExtendedTooltip name="НадписьОбновлениеРасширеннаяПодсказка" id="204"/>
+				</LabelDecoration>
+				<LabelField name="НоваяВерсия" id="205">
+					<DataPath>НоваяВерсия</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<ContextMenu name="НоваяВерсияКонтекстноеМеню" id="206"/>
+					<ExtendedTooltip name="НоваяВерсияРасширеннаяПодсказка" id="207"/>
+				</LabelField>
+				<Button name="ОбновитьРасширение" id="208">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.ОбновитьРасширение</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Обновить сейчас</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ОбновитьРасширениеРасширеннаяПодсказка" id="209"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<LabelDecoration name="Ссылка" id="31">
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>https://gitsell.ru/msrv-tech/1c-ai-autofill</v8:content>
+				</v8:item>
+			</Title>
+			<Hyperlink>true</Hyperlink>
+			<ContextMenu name="СсылкаКонтекстноеМеню" id="32"/>
+			<ExtendedTooltip name="СсылкаРасширеннаяПодсказка" id="33"/>
+			<Events>
+				<Event name="Click">СсылкаНажатие</Event>
+			</Events>
+		</LabelDecoration>
+		<UsualGroup name="ГруппаСервер" id="26">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подключение к серверу</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаПроксиРасширеннаяПодсказка" id="27"/>
+			<ChildItems>
+				<InputField name="Email" id="112">
+					<DataPath>Email</DataPath>
+					<ContextMenu name="EmailКонтекстноеМеню" id="121"/>
+					<ExtendedTooltip name="EmailРасширеннаяПодсказка" id="122"/>
+				</InputField>
+				<InputField name="АдресСервера" id="17">
+					<DataPath>АдресСервера</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Адрес сервера</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>URL сервера (например https://ai.company.local/v1)</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="АдресСервераКонтекстноеМеню" id="18"/>
+					<ExtendedTooltip name="АдресСервераРасширеннаяПодсказка" id="19"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="Токен" id="1">
+			<DataPath>Токен</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>API key</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ТокенКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="ТокенРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="МодельИИ" id="28">
+			<DataPath>МодельИИ</DataPath>
+			<ListChoiceMode>true</ListChoiceMode>
+			<ChoiceList>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>AUTO (виртуальная)</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">AUTO</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>anthropic/claude-3-5-sonnet</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">claude-3-5-sonnet</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>anthropic/claude-3-haiku</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">claude-3-haiku</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>anthropic/claude-3-opus</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">claude-3-opus</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>anthropic/claude-3-sonnet</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">claude-3-sonnet</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>deepseek/deepseek-chat</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">deepseek-chat</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>gigachat/GigaChat-2</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">GigaChat-2</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>gigachat/GigaChat-2-Max</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">GigaChat-2-Max</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>gigachat/GigaChat-2-Pro</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">GigaChat-2-Pro</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>openai/gpt-3.5-turbo</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">gpt-3.5-turbo</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>openai/gpt-3.5-turbo-16k</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">gpt-3.5-turbo-16k</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>openai/gpt-4</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">gpt-4</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>openai/gpt-4o</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">gpt-4o</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>openai/gpt-4-turbo</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:string">gpt-4-turbo</Value>
+					</xr:Value>
+				</xr:Item>
+			</ChoiceList>
+			<ContextMenu name="МодельИИКонтекстноеМеню" id="29"/>
+			<ExtendedTooltip name="МодельИИРасширеннаяПодсказка" id="30"/>
+		</InputField>
+		<UsualGroup name="ГруппаОписаниеНоменклатуры" id="102">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Описание номенклатуры</v8:content>
+				</v8:item>
+			</Title>
+			<Group>HorizontalIfPossible</Group>
+			<Representation>StrongSeparation</Representation>
+			<ExtendedTooltip name="ГруппаОписаниеНоменклатурыРасширеннаяПодсказка" id="103"/>
+			<ChildItems>
+				<InputField name="ПромтОписание" id="4">
+					<DataPath>ПромтОписание</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Промт для описания номенклатуры</v8:content>
+						</v8:item>
+					</Title>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<ContextMenu name="ПромтОписаниеКонтекстноеМеню" id="5"/>
+					<ExtendedTooltip name="ПромтОписаниеРасширеннаяПодсказка" id="6"/>
+				</InputField>
+				<LabelDecoration name="ДекорацияЗаполнитьОписание" id="106">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заполнить по умолчанию</v8:content>
+						</v8:item>
+					</Title>
+					<Hyperlink>true</Hyperlink>
+					<ContextMenu name="ДекорацияЗаполнитьОписаниеКонтекстноеМеню" id="110"/>
+					<ExtendedTooltip name="ДекорацияЗаполнитьОписаниеРасширеннаяПодсказка" id="107"/>
+					<Events>
+						<Event name="Click">ДекорацияЗаполнитьОписаниеНажатие</Event>
+					</Events>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<CheckBoxField name="АвтоматическиЗаполнятьОписание" id="7">
+			<DataPath>АвтоматическиЗаполнятьОписание</DataPath>
+			<Visible>false</Visible>
+			<ContextMenu name="АвтоматическиЗаполнятьОписаниеКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="АвтоматическиЗаполнятьОписаниеРасширеннаяПодсказка" id="9"/>
+		</CheckBoxField>
+		<UsualGroup name="ГруппаДопСвойства" id="104">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заполнение доп свойств</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Representation>StrongSeparation</Representation>
+			<ExtendedTooltip name="ГруппаДопСвойстваРасширеннаяПодсказка" id="105"/>
+			<ChildItems>
+				<InputField name="ДополнительныеСвойства" id="20">
+					<DataPath>ДополнительныеСвойства</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заполнять дополнительные свойства</v8:content>
+						</v8:item>
+					</Title>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<ContextMenu name="ДополнительныеСвойстваКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="ДополнительныеСвойстваРасширеннаяПодсказка" id="22"/>
+				</InputField>
+				<InputField name="ПромтДопСвойства" id="23">
+					<DataPath>ПромтДопСвойства</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Промт для доп свойств</v8:content>
+						</v8:item>
+					</Title>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>2</Height>
+					<AutoMaxHeight>false</AutoMaxHeight>
+					<MultiLine>false</MultiLine>
+					<ContextMenu name="ПромтДопСвойстваКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="ПромтДопСвойстваРасширеннаяПодсказка" id="25"/>
+				</InputField>
+				<LabelDecoration name="ДекорацияЗаполнитьДопСвойства" id="108">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заполнить по умолчанию</v8:content>
+						</v8:item>
+					</Title>
+					<Hyperlink>true</Hyperlink>
+					<ContextMenu name="ДекорацияЗаполнитьДопСвойстваКонтекстноеМеню" id="111"/>
+					<ExtendedTooltip name="ДекорацияЗаполнитьДопСвойстваРасширеннаяПодсказка" id="109"/>
+					<Events>
+						<Event name="Click">ДекорацияЗаполнитьДопСвойстваНажатие</Event>
+					</Events>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Токен" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Токен</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>300</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ПромтОписание" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Промт (описание)</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>500</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="АвтоматическиЗаполнятьОписание" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Автоматически заполнять описание</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="АдресСервера" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Адрес сервера</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ДополнительныеСвойства" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дополнительные свойства</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<Settings xsi:type="v8:TypeDescription">
+				<v8:Type>cfg:ChartOfCharacteristicTypesRef.ДополнительныеРеквизитыИСведения</v8:Type>
+			</Settings>
+		</Attribute>
+		<Attribute name="ПромтДопСвойства" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Промт (доп. свойства)</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>500</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="МодельИИ" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Модель ИИ</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>50</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Email" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Email пользователя (Gitsell)</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ЕстьОбновление" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Есть обновление</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="НоваяВерсия" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Новая версия</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="СсылкаНаСкачивание" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ссылка на скачивание</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Сохранить" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сохранить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сохранить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Сохранить</Action>
+		</Command>
+		<Command name="Отмена" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отмена</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отмена</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Отмена</Action>
+		</Command>
+		<Command name="Зарегистрироваться" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Зарегистрироваться на Gitsell</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Зарегистрироваться</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Зарегистрироваться</Action>
+		</Command>
+		<Command name="ОбновитьРасширение" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить расширение</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОбновитьРасширение</Action>
+		</Command>
+	</Commands>
+</Form>
