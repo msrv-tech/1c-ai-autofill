@@ -33,7 +33,7 @@
 		</InternalInfo>
 		<Properties>
 			<ObjectBelonging>Adopted</ObjectBelonging>
-			<Name>GPT_ОписаниеНоменклатуры</Name>
+			<Name>СhatGPT_ОписаниеНоменклатуры</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
