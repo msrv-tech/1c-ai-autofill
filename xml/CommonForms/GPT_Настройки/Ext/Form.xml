@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:pal="http://v8.1c.ru/8.1/data/ui/colors/palette" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.21">
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
 		<ChildItems>
@@ -32,60 +32,7 @@
 				<Event name="Click">СсылкаНажатие</Event>
 			</Events>
 		</LabelDecoration>
-		<UsualGroup name="ГруппаОбновление" id="200">
-			<Visible>false</Visible>
-			<Title>
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Обновление</v8:content>
-				</v8:item>
-			</Title>
-			<Group>Horizontal</Group>
-			<Representation>StrongSeparation</Representation>
-			<ShowTitle>false</ShowTitle>
-			<ExtendedTooltip name="ГруппаОбновлениеРасширеннаяПодсказка" id="201"/>
-			<ChildItems>
-				<LabelDecoration name="НадписьОбновление" id="202">
-					<AutoMaxWidth>false</AutoMaxWidth>
-					<Title formatted="false">
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Доступна новая версия:</v8:content>
-						</v8:item>
-					</Title>
-					<ContextMenu name="НадписьОбновлениеКонтекстноеМеню" id="203"/>
-					<ExtendedTooltip name="НадписьОбновлениеРасширеннаяПодсказка" id="204"/>
-				</LabelDecoration>
-				<LabelField name="НоваяВерсия" id="205">
-					<DataPath>НоваяВерсия</DataPath>
-					<TitleLocation>None</TitleLocation>
-					<ContextMenu name="НоваяВерсияКонтекстноеМеню" id="206"/>
-					<ExtendedTooltip name="НоваяВерсияРасширеннаяПодсказка" id="207"/>
-				</LabelField>
-				<Button name="ОбновитьРасширение" id="208">
-					<Type>UsualButton</Type>
-					<CommandName>Form.Command.ОбновитьРасширение</CommandName>
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Обновить сейчас</v8:content>
-						</v8:item>
-					</Title>
-					<ExtendedTooltip name="ОбновитьРасширениеРасширеннаяПодсказка" id="209"/>
-				</Button>
-				<Button name="СкачатьРасширение" id="210">
-					<Type>UsualButton</Type>
-					<CommandName>Form.Command.СкачатьРасширение</CommandName>
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Скачать</v8:content>
-						</v8:item>
-					</Title>
-					<ExtendedTooltip name="СкачатьРасширениеРасширеннаяПодсказка" id="211"/>
-				</Button>
-			</ChildItems>
-		</UsualGroup>
+		<!-- В ветке для 1С:Фреш блок обновления отключён -->
 		<UsualGroup name="ГруппаВерх" id="223">
 			<Title>
 				<v8:item>
@@ -702,23 +649,6 @@
 			</ToolTip>
 			<Action>Зарегистрироваться</Action>
 		</Command>
-		<Command name="ОбновитьРасширение" id="4">
-			<Title>
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Обновить расширение</v8:content>
-				</v8:item>
-			</Title>
-			<Action>ОбновитьРасширение</Action>
-		</Command>
-		<Command name="СкачатьРасширение" id="5">
-			<Title>
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Скачать расширение</v8:content>
-				</v8:item>
-			</Title>
-			<Action>СкачатьРасширение</Action>
-		</Command>
+		<!-- В ветке для 1С:Фреш команды обновления отключены -->
 	</Commands>
 </Form>
