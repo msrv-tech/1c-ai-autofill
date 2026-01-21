@@ -66,6 +66,17 @@
 					</Title>
 					<ExtendedTooltip name="ОбновитьРасширениеРасширеннаяПодсказка" id="209"/>
 				</Button>
+				<Button name="СкачатьРасширение" id="210">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.СкачатьРасширение</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Скачать</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СкачатьРасширениеРасширеннаяПодсказка" id="211"/>
+				</Button>
 			</ChildItems>
 		</UsualGroup>
 		<LabelDecoration name="Ссылка" id="31">
@@ -633,6 +644,15 @@
 				</v8:item>
 			</Title>
 			<Action>ОбновитьРасширение</Action>
+		</Command>
+		<Command name="СкачатьРасширение" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Скачать расширение</v8:content>
+				</v8:item>
+			</Title>
+			<Action>СкачатьРасширение</Action>
 		</Command>
 	</Commands>
 </Form>
