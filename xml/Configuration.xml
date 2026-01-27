@@ -33,7 +33,7 @@
 		</InternalInfo>
 		<Properties>
 			<ObjectBelonging>Adopted</ObjectBelonging>
-			<Name>СhatGPT_ОписаниеНоменклатуры</Name>
+			<Name>GPT_ОписаниеНоменклатуры</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -54,7 +54,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.GPT_ОсновнаяРоль</xr:Item>
 			</DefaultRoles>
 			<Vendor/>
-			<Version>1.8.3</Version>
+			<Version>1.8.4</Version>
 			<Caption/>
 			<ShortCaption/>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>

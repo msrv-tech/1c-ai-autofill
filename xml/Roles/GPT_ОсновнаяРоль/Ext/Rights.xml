@@ -23,7 +23,7 @@
 		</right>
 	</object>
 	<object>
-		<name>Configuration.СhatGPT_ОписаниеНоменклатуры</name>
+		<name>Configuration.GPT_ОписаниеНоменклатуры</name>
 		<right>
 			<name>MainWindowModeNormal</name>
 			<value>true</value>
