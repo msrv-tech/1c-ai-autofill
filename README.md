@@ -1,6 +1,6 @@
 # 1C AI Autofill
 
-> **Ветка `UNF_Rozn`** — сборка для **1С:УНФ** и **1С:Розница**. Скачивание: [Releases](https://github.com/msrv-tech/1c-ai-autofill/releases) → теги `UNF_Rozn_*`.
+
 >
 > **Ветка `UNF_Rozn_Fresh`** — версия для **1С:Фреш** и **1С:Плюс**. **Релизы на GitHub для ветки Fresh не публикуются** — установка и обновление выполняются непосредственно в сервисах **1С:Фреш** и **1С:Плюс** (через менеджер сервиса).
 
@@ -68,9 +68,8 @@
 
 ## Интерфейс
 
-<img width="1532" height="983" alt="image" src="https://github.com/user-attachments/assets/a9d6d05b-5366-48e8-a714-7c8d022a6bb1" />
-
-<img width="568" height="455" alt="image" src="https://github.com/user-attachments/assets/9e32ff9c-7bf1-450e-b157-be90e5632cd7" />
+<img width="1679" height="461" alt="image" src="https://github.com/user-attachments/assets/80a6fb84-8710-4d95-8e6b-8abbd2fb98d7" />
+<img width="647" height="482" alt="image" src="https://github.com/user-attachments/assets/28912d08-9e21-4543-a7a2-8585e1dbadb0" />
 
 ---
 
