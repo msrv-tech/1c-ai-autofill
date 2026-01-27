@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mdclass:CommonModule xmlns:mdclass="http://g5.1c.ru/v8/dt/metadata/mdclass" uuid="7e185b95-0704-4229-83b1-1f259bfbe6bd">
-  <name>GPT_ОбщийМодульСервер</name>
-  <synonym>
-    <key>ru</key>
-    <value>GPT общий модуль сервер</value>
-  </synonym>
-  <server>true</server>
-</mdclass:CommonModule>
