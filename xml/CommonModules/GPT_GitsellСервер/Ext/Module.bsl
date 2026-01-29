@@ -223,6 +223,55 @@
 	
 КонецФункции
 
+// Возвращает список доступных моделей ИИ
+Функция Gitsell_СписокМоделей() Экспорт
+	
+	Модели = Новый Массив;
+	Модели.Добавить(Новый Структура("id, name", "auto", "AUTO (виртуальная)"));
+	
+	// OpenAI
+	Модели.Добавить(Новый Структура("id, name", "gpt-4", "openai/gpt-4"));
+	Модели.Добавить(Новый Структура("id, name", "gpt-4-turbo", "openai/gpt-4-turbo"));
+	Модели.Добавить(Новый Структура("id, name", "gpt-4o", "openai/gpt-4o"));
+	Модели.Добавить(Новый Структура("id, name", "gpt-3.5-turbo", "openai/gpt-3.5-turbo"));
+	Модели.Добавить(Новый Структура("id, name", "gpt-3.5-turbo-16k", "openai/gpt-3.5-turbo-16k"));
+	Модели.Добавить(Новый Структура("id, name", "gpt-image-1", "openai/gpt-image-1"));
+	Модели.Добавить(Новый Структура("id, name", "gpt-image-1-mini", "openai/gpt-image-1-mini"));
+	
+	// Anthropic
+	Модели.Добавить(Новый Структура("id, name", "claude-3-opus", "anthropic/claude-3-opus"));
+	Модели.Добавить(Новый Структура("id, name", "claude-3-sonnet", "anthropic/claude-3-sonnet"));
+	Модели.Добавить(Новый Структура("id, name", "claude-3-haiku", "anthropic/claude-3-haiku"));
+	Модели.Добавить(Новый Структура("id, name", "claude-3-5-sonnet", "anthropic/claude-3-5-sonnet"));
+	
+	// DeepSeek
+	Модели.Добавить(Новый Структура("id, name", "deepseek-chat", "deepseek/deepseek-chat"));
+	Модели.Добавить(Новый Структура("id, name", "deepseek-coder", "deepseek/deepseek-coder"));
+	
+	// GigaChat
+	Модели.Добавить(Новый Структура("id, name", "GigaChat-2-Max", "gigachat/GigaChat-2-Max"));
+	Модели.Добавить(Новый Структура("id, name", "GigaChat-2-Pro", "gigachat/GigaChat-2-Pro"));
+	Модели.Добавить(Новый Структура("id, name", "GigaChat-2", "gigachat/GigaChat-2"));
+	
+	// YandexGPT
+	Модели.Добавить(Новый Структура("id, name", "yandexgpt", "yandex/yandexgpt"));
+	Модели.Добавить(Новый Структура("id, name", "yandexgpt-lite", "yandex/yandexgpt-lite"));
+	
+	// Google Gemini
+	Модели.Добавить(Новый Структура("id, name", "gemini-2.0-flash", "google/gemini-2.0-flash"));
+	Модели.Добавить(Новый Структура("id, name", "gemini-2.0-flash-001", "google/gemini-2.0-flash-001"));
+	Модели.Добавить(Новый Структура("id, name", "gemini-2.0-flash-lite", "google/gemini-2.0-flash-lite"));
+	Модели.Добавить(Новый Структура("id, name", "gemini-2.0-flash-lite-001", "google/gemini-2.0-flash-lite-001"));
+	Модели.Добавить(Новый Структура("id, name", "gemini-2.5-flash", "google/gemini-2.5-flash"));
+	Модели.Добавить(Новый Структура("id, name", "gemini-2.5-flash-lite", "google/gemini-2.5-flash-lite"));
+	Модели.Добавить(Новый Структура("id, name", "gemini-2.5-pro", "google/gemini-2.5-pro"));
+	Модели.Добавить(Новый Структура("id, name", "gemini-2.5-flash-image", "google/gemini-2.5-flash-image"));
+	Модели.Добавить(Новый Структура("id, name", "gemini-3-pro-image-preview", "google/gemini-3-pro-image-preview"));
+	
+	Возврат Модели;
+	
+КонецФункции
+
 #КонецОбласти
 
 #Область GitHub_Updater
