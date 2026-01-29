@@ -32,6 +32,60 @@
 				<Event name="Click">СсылкаНажатие</Event>
 			</Events>
 		</LabelDecoration>
+		<UsualGroup name="ГруппаОбновление" id="200">
+			<Visible>false</Visible>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновление</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Representation>StrongSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаОбновлениеРасширеннаяПодсказка" id="201"/>
+			<ChildItems>
+				<LabelDecoration name="НадписьОбновление" id="202">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Доступна новая версия:</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="НадписьОбновлениеКонтекстноеМеню" id="203"/>
+					<ExtendedTooltip name="НадписьОбновлениеРасширеннаяПодсказка" id="204"/>
+				</LabelDecoration>
+				<LabelField name="НоваяВерсия" id="205">
+					<DataPath>НоваяВерсия</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<ContextMenu name="НоваяВерсияКонтекстноеМеню" id="206"/>
+					<ExtendedTooltip name="НоваяВерсияРасширеннаяПодсказка" id="207"/>
+				</LabelField>
+				<Button name="ОбновитьРасширение" id="208">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.ОбновитьРасширение</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Обновить сейчас</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ОбновитьРасширениеРасширеннаяПодсказка" id="209"/>
+				</Button>
+				<Button name="СкачатьРасширение" id="210">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.СкачатьРасширение</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Скачать</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СкачатьРасширениеРасширеннаяПодсказка" id="211"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
 		<UsualGroup name="ГруппаВерх" id="223">
 			<Title>
 				<v8:item>
@@ -68,57 +122,111 @@
 					<ShowTitle>false</ShowTitle>
 					<ExtendedTooltip name="ГруппаЛевоРасширеннаяПодсказка" id="226"/>
 					<ChildItems>
-						<UsualGroup name="ГруппаСервер" id="26">
+						<UsualGroup name="ГруппаРегистрация" id="252">
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Подключение к серверу</v8:content>
+									<v8:content>Регистрация</v8:content>
 								</v8:item>
 							</Title>
-							<Group>Vertical</Group>
-							<Representation>None</Representation>
-							<ShowTitle>false</ShowTitle>
-							<ExtendedTooltip name="ГруппаПроксиРасширеннаяПодсказка" id="27"/>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа регистрация</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Representation>StrongSeparation</Representation>
+							<ExtendedTooltip name="ГруппаРегистрацияРасширеннаяПодсказка" id="253"/>
 							<ChildItems>
-								<InputField name="Email" id="112">
-									<DataPath>Email</DataPath>
-									<ContextMenu name="EmailКонтекстноеМеню" id="121"/>
-									<ExtendedTooltip name="EmailРасширеннаяПодсказка" id="122"/>
-								</InputField>
-								<InputField name="АдресСервера" id="17">
-									<DataPath>АдресСервера</DataPath>
+								<UsualGroup name="ГруппаGitsell" id="238">
 									<Title>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
-											<v8:content>Адрес сервера</v8:content>
+											<v8:content>Группа gitsell</v8:content>
 										</v8:item>
 									</Title>
 									<ToolTip>
 										<v8:item>
 											<v8:lang>ru</v8:lang>
-											<v8:content>URL сервера (например https://ai.company.local/v1)</v8:content>
+											<v8:content>Группа gitsell</v8:content>
 										</v8:item>
 									</ToolTip>
-									<ToolTipRepresentation>Button</ToolTipRepresentation>
-									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-									<ContextMenu name="АдресСервераКонтекстноеМеню" id="18"/>
-									<ExtendedTooltip name="АдресСервераРасширеннаяПодсказка" id="19"/>
-								</InputField>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ГруппаGitsellРасширеннаяПодсказка" id="239"/>
+									<ChildItems>
+										<Button name="ФормаЗарегистрироваться" id="100">
+											<Type>UsualButton</Type>
+											<DefaultButton>true</DefaultButton>
+											<CommandName>Form.Command.Зарегистрироваться</CommandName>
+											<ButtonImportance>Main</ButtonImportance>
+											<ExtendedTooltip name="ФормаЗарегистрироватьсяРасширеннаяПодсказка" id="113"/>
+										</Button>
+										<LabelField name="Email" id="112">
+											<DataPath>Email</DataPath>
+											<ContextMenu name="EmailКонтекстноеМеню" id="121"/>
+											<ExtendedTooltip name="EmailРасширеннаяПодсказка" id="122"/>
+										</LabelField>
+									</ChildItems>
+								</UsualGroup>
+								<LabelDecoration name="ДекорацияИли" id="249">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>ИЛИ заполнить вручную</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ДекорацияИлиКонтекстноеМеню" id="250"/>
+									<ExtendedTooltip name="ДекорацияИлиРасширеннаяПодсказка" id="251"/>
+								</LabelDecoration>
+								<UsualGroup name="ГруппаСервер" id="26">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Подключение к серверу</v8:content>
+										</v8:item>
+									</Title>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ГруппаПроксиРасширеннаяПодсказка" id="27"/>
+									<ChildItems>
+										<InputField name="АдресСервера" id="17">
+											<DataPath>АдресСервера</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Адрес сервера</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>URL сервера (например https://ai.company.local/v1)</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ToolTipRepresentation>Button</ToolTipRepresentation>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="АдресСервераКонтекстноеМеню" id="18"/>
+											<ExtendedTooltip name="АдресСервераРасширеннаяПодсказка" id="19"/>
+										</InputField>
+										<InputField name="Токен" id="1">
+											<DataPath>Токен</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>API key</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ТокенКонтекстноеМеню" id="2"/>
+											<ExtendedTooltip name="ТокенРасширеннаяПодсказка" id="3"/>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
 							</ChildItems>
 						</UsualGroup>
-						<InputField name="Токен" id="1">
-							<DataPath>Токен</DataPath>
-							<Title>
-								<v8:item>
-									<v8:lang>ru</v8:lang>
-									<v8:content>API key</v8:content>
-								</v8:item>
-							</Title>
-							<ContextMenu name="ТокенКонтекстноеМеню" id="2"/>
-							<ExtendedTooltip name="ТокенРасширеннаяПодсказка" id="3"/>
-						</InputField>
 						<InputField name="МодельИИ" id="28">
 							<DataPath>МодельИИ</DataPath>
+							<AutoMaxWidth>false</AutoMaxWidth>
 							<ListChoiceMode>true</ListChoiceMode>
 							<ChoiceList>
 								<xr:Item>
@@ -131,176 +239,7 @@
 												<v8:content>AUTO (виртуальная)</v8:content>
 											</v8:item>
 										</Presentation>
-										<Value xsi:type="xs:string">AUTO</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>anthropic/claude-3-5-sonnet</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">claude-3-5-sonnet</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>anthropic/claude-3-haiku</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">claude-3-haiku</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>anthropic/claude-3-opus</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">claude-3-opus</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>anthropic/claude-3-sonnet</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">claude-3-sonnet</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>deepseek/deepseek-chat</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">deepseek-chat</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>gigachat/GigaChat-2</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">GigaChat-2</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>gigachat/GigaChat-2-Max</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">GigaChat-2-Max</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>gigachat/GigaChat-2-Pro</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">GigaChat-2-Pro</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>openai/gpt-3.5-turbo</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">gpt-3.5-turbo</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>openai/gpt-3.5-turbo-16k</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">gpt-3.5-turbo-16k</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>openai/gpt-4</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">gpt-4</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>openai/gpt-4o</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">gpt-4o</Value>
-									</xr:Value>
-								</xr:Item>
-								<xr:Item>
-									<xr:Presentation/>
-									<xr:CheckState>0</xr:CheckState>
-									<xr:Value xsi:type="FormChoiceListDesTimeValue">
-										<Presentation>
-											<v8:item>
-												<v8:lang>ru</v8:lang>
-												<v8:content>openai/gpt-4-turbo</v8:content>
-											</v8:item>
-										</Presentation>
-										<Value xsi:type="xs:string">gpt-4-turbo</Value>
+										<Value xsi:type="xs:string">auto</Value>
 									</xr:Value>
 								</xr:Item>
 							</ChoiceList>
@@ -325,15 +264,6 @@
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
 					<ExtendedTooltip name="ГруппаПравоРасширеннаяПодсказка" id="228"/>
-					<ChildItems>
-						<Button name="ФормаЗарегистрироваться" id="100">
-							<Type>UsualButton</Type>
-							<DefaultButton>true</DefaultButton>
-							<CommandName>Form.Command.Зарегистрироваться</CommandName>
-							<ButtonImportance>Main</ButtonImportance>
-							<ExtendedTooltip name="ФормаЗарегистрироватьсяРасширеннаяПодсказка" id="113"/>
-						</Button>
-					</ChildItems>
 				</UsualGroup>
 			</ChildItems>
 		</UsualGroup>
@@ -647,6 +577,24 @@
 				</v8:item>
 			</ToolTip>
 			<Action>Зарегистрироваться</Action>
+		</Command>
+		<Command name="ОбновитьРасширение" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить расширение</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОбновитьРасширение</Action>
+		</Command>
+		<Command name="СкачатьРасширение" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Скачать расширение</v8:content>
+				</v8:item>
+			</Title>
+			<Action>СкачатьРасширение</Action>
 		</Command>
 	</Commands>
 </Form>
