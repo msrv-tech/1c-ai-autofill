@@ -27,7 +27,7 @@
 			<ObjectBelonging>Adopted</ObjectBelonging>
 			<Name>Номенклатура</Name>
 			<Comment/>
-			<ExtendedConfigurationObject>bea7f781-5f18-4219-997c-9a767fb284be</ExtendedConfigurationObject>
+			<ExtendedConfigurationObject>fc59acc3-f1f7-4e3f-96da-e580f2c5a88f</ExtendedConfigurationObject>
 		</Properties>
 		<ChildObjects>
 			<Form>ФормаЭлемента</Form>
