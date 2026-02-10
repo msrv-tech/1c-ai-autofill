@@ -80,5 +80,21 @@
 
 ---
 
+## For contributors
+
+Хотите помочь проекту кодом/документацией/тестами — добро пожаловать.
+
+- **Как начать**: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- **Правила работы с ветками и merge**: [`MERGE.md`](MERGE.md)
+- **Публичный список направлений (roadmap)**: [`ROADMAP.md`](ROADMAP.md)
+- **Локальная сборка/установка**: [`automation/README.md`](automation/README.md) и [`automation/update-extension-and-run-db.ps1`](automation/update-extension-and-run-db.ps1)
+- **Задачи для старта**:
+  - `good first issue`: https://github.com/msrv-tech/1c-ai-autofill/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
+  - `help wanted`: https://github.com/msrv-tech/1c-ai-autofill/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
+
+Лицензия: [MIT](LICENSE).
+
+---
+
 ## English (short)
 **1C AI Autofill** is a **1C:Enterprise 8.3 extension** (`.cfe`, BSL) that generates product descriptions and fills custom attributes for items (nomenclature) using AI via **Gitsell** proxy API.
