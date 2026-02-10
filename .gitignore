@@ -26,3 +26,13 @@ Thumbs.db
 *.lst
 *.epf~
 *.epf.lock
+
+# Результаты сборки и логи
+bin/
+automation/logs/
+
+# Локальная конфигурация (строка подключения к 1С)
+.env
+
+# Черновики публикаций (Infostart и т.п.)
+infostart/
