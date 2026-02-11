@@ -37,3 +37,7 @@ docs/tools/
 # Локальная конфигурация (строка подключения к 1С)
 .env
 
+# Локальная конфигурация сборки (базы по веткам)
+automation/build-config.json
+automation/build-config.local.json
+

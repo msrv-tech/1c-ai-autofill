@@ -142,14 +142,18 @@ if (-not $SkipLoadExtension -and -not $BuildFromXml) {
 }
 
 try {
-    $baseArgs = @(
-        'DESIGNER',
-        '/DisableStartupDialogs',
-        '/DisableStartupMessages',
-        '/IBConnectionString', $ConnectionString
-    )
-    if (-not [string]::IsNullOrWhiteSpace($UserName)) { $baseArgs += '/N'; $baseArgs += $UserName }
-    if (-not [string]::IsNullOrEmpty($Password)) { $baseArgs += '/P'; $baseArgs += $Password }
+    $baseArgs = @('DESIGNER', '/DisableStartupDialogs', '/DisableStartupMessages')
+    if ($ConnectionString -match '^File="([^"]+)"') {
+        $ibPath = $matches[1]
+        $baseArgs += '/F'; $baseArgs += $ibPath
+        if ($ConnectionString -match ';Usr="([^"]*)"') { $baseArgs += '/N'; $baseArgs += $matches[1] }
+        if ($ConnectionString -match ';Pwd="([^"]*)"' -and $matches[1]) { $baseArgs += '/P'; $baseArgs += $matches[1] }
+        elseif ($ConnectionString -match ';Pwd=([^;"]|$)') { }
+    } else {
+        $baseArgs += '/IBConnectionString'; $baseArgs += $ConnectionString
+        if (-not [string]::IsNullOrWhiteSpace($UserName)) { $baseArgs += '/N'; $baseArgs += $UserName }
+        if (-not [string]::IsNullOrEmpty($Password)) { $baseArgs += '/P'; $baseArgs += $Password }
+    }
 
     # 0) Сборка .cfe из xml (если -BuildFromXml)
     if ($BuildFromXml) {
