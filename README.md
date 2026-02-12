@@ -85,8 +85,8 @@
 Хотите помочь проекту кодом/документацией/тестами — добро пожаловать.
 
 - **Как начать**: [`CONTRIBUTING.md`](CONTRIBUTING.md)
-- **Правила работы с ветками и merge**: [`MERGE.md`](MERGE.md)
-- **Публичный список направлений (roadmap)**: [`ROADMAP.md`](ROADMAP.md)
+- **Правила работы с ветками и merge**: [`docs/MERGE.md`](docs/MERGE.md)
+- **Публичный список направлений (roadmap)**: [`docs/ROADMAP.md`](docs/ROADMAP.md)
 - **Локальная сборка/установка**: [`automation/README.md`](automation/README.md) и [`automation/update-extension-and-run-db.ps1`](automation/update-extension-and-run-db.ps1)
 - **Задачи для старта**:
   - `good first issue`: https://github.com/msrv-tech/1c-ai-autofill/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
