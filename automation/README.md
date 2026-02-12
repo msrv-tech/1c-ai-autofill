@@ -54,6 +54,29 @@
 .\update-extension-and-run-db.ps1 -BuildFromXml -SkipLoadExtension -SkipDbUpdate -SkipRunClient
 ```
 
+## Создание GitHub релиза с артефактами
+
+```powershell
+# Создаёт 2 релиза в текущем формате:
+# UNF_Rozn_1.8.8 и UT_KA_ERP_1.8.8
+.\create-github-release.ps1 -Version 1.8.8
+```
+
+Параметры `create-github-release.ps1`:
+
+| Параметр | По умолчанию | Описание |
+|----------|--------------|----------|
+| `-Version` | — | Обязательная версия релиза (например, `1.8.8`) |
+| `-Target` | `main` | Ветка/коммит для GitHub Release |
+| `-UNFBinRoot` | `D:\...\UNF_Rozn\bin` | Корневой каталог артефактов UNF/Розница |
+| `-UTBinRoot` | `D:\...\UT_KA_ERP\bin` | Корневой каталог артефактов UT/KA/ERP |
+
+Важно:
+- Скрипт **не использует fallback** и завершится ошибкой при любой проблеме.
+- Скрипт ожидает каталоги `UNF_Rozn_<version>` и `UT_KA_ERP_<version>` внутри соответствующих `bin`.
+- Для каждого каталога загружает все файлы верхнего уровня (например, `.cfe` и `1cconf.txt`).
+- Для работы нужны `git`, `gh` и авторизация `gh auth login`.
+
 ## Параметры update-extension-and-run-db.ps1
 
 | Параметр | По умолчанию | Описание |
