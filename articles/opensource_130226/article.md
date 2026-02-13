@@ -14,7 +14,7 @@
 
 ### Мем‑пауза
 
-![Минус 20 минут рутины](https://raw.githubusercontent.com/msrv-tech/1c-ai-autofill/main/articles/worktree_130226/media/20min.png)
+![Минус 20 минут рутины](https://raw.githubusercontent.com/msrv-tech/1c-ai-autofill/main/articles/opensource_130226/media/20min.png)
 
 ## Что именно умеет расширение
 

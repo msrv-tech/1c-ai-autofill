@@ -96,7 +96,9 @@
 Лицензия: [MIT](LICENSE).
 
 [![Infostart](https://infostart.ru/bitrix/templates/sandbox_empty/assets/tpl/abo/img/logo.svg)](https://infostart.ru/1c/articles/2611372/)  
-Статья на Infostart: [Опенсорс на 1С без боли: Git worktrees, XML вместо EDT и сборка расширения в одну кнопку](https://infostart.ru/1c/articles/2611372/)
+Статьи на Infostart:
+- [Опенсорс на 1С без боли: Git worktrees, XML вместо EDT и сборка расширения в одну кнопку](https://infostart.ru/1c/articles/2611372/)
+- [1C AI Autofill — опенсорс-расширение 1С для заполнения описаний и реквизитов номенклатуры с помощью ИИ](https://infostart.ru/1c/articles/2614487/)
 
 ---
 
