@@ -1,0 +1,25 @@
+{
+  "worktreesRoot": "",
+  "branches": {
+    "main": {
+      "connectionStringEnv": "1C_CONNECTION_STRING",
+      "extensionName": "GPT_ОписаниеНоменклатуры",
+      "cfeBasename": "1c-ai-autofill_unf_rozn"
+    },
+    "UNF_Rozn": {
+      "connectionStringEnv": "1C_CONNECTION_STRING_UNF_Rozn",
+      "extensionName": "GPT_ОписаниеНоменклатуры",
+      "cfeBasename": "1c-ai-autofill_unf_rozn"
+    },
+    "UNF_Rozn_Fresh": {
+      "connectionStringEnv": "1C_CONNECTION_STRING_UNF_Rozn_Fresh",
+      "extensionName": "GigaСhat_ОписаниеНоменклатуры",
+      "cfeBasename": "1c-ai-autofill_unf_rozn_fresh"
+    },
+    "UT_KA_ERP": {
+      "connectionStringEnv": "1C_CONNECTION_STRING_UT_KA_ERP",
+      "extensionName": "GPT_ОписаниеНоменклатуры",
+      "cfeBasename": "1c-ai-autofill_UT_KA_ERP"
+    }
+  }
+}
