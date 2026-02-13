@@ -1,0 +1,322 @@
+<h1>Опенсорс-расширение 1С на GitHub без боли: ветки под конфигурации, XML вместо EDT и сборка .cfe в одну кнопку</h1>
+
+<p>Если вы хоть раз пытались вести &laquo;одно расширение на несколько конфигураций&raquo; (УНФ/Розница/УТ/КА/ERP) в Git, то знаете три чувства: <strong>diff</strong>, <strong>merge</strong> и &laquo;почему опять конфликт в Configuration.xml&raquo;. Мы прошли этот квест на проекте <a href="https://github.com/msrv-tech/1c-ai-autofill">1C AI Autofill</a> и собрали рабочую схему, которую можно забрать себе.</p>
+
+<p><em>Дисклеймер:</em> если я говорю &laquo;мы&raquo;, это значит я и мои агенты в Cursor IDE. Они тоже участвуют в мерже &mdash; и тоже нервничают, когда конфликтов в <code>Configuration.xml</code> больше, чем изменений в коде.</p>
+
+<p><strong>Что это за проект (в двух строках):</strong> расширение для 1С:Предприятие 8.3, которое помогает генерировать продающие описания номенклатуры и (по настройкам) заполнять доп. реквизиты/характеристики с помощью AI. Исходники открыты, релизы лежат на GitHub, а логика разработки &mdash; внятная и повторяемая.</p>
+
+<p><strong>Почему опенсорс:</strong> изначально это был платный продукт. Со временем коммерческая ценность именно этого кода стала для нас несущественной &mdash; поэтому мы решили открыть исходники, чтобы наработки жили дальше и приносили пользу сообществу.</p>
+
+<h2 id="tldr">Коротко (TL;DR)</h2>
+
+<ul>
+	<li><strong>main</strong> &mdash; ядро (вся логика и &laquo;истина&raquo;), а ветки конфигураций &mdash; тонкие адаптеры (в основном отличаются <code>xml/Configuration.xml</code>).</li>
+	<li><strong>git worktree</strong> &mdash; чтобы держать одновременно несколько веток рядом и не переключаться туда-сюда.</li>
+	<li><strong>Только XML-выгрузка</strong> &mdash; чтобы diff был читаемым, а merge &mdash; предсказуемым.</li>
+	<li><strong>Сборка автоматизирована</strong> (PowerShell + 1cv8 DESIGNER): из XML &rarr; .cfe &rarr; загрузка &rarr; обновление БД (опционально).</li>
+</ul>
+
+<h3>Мем-пауза, чтобы пережить merge</h3>
+
+<p><img alt="Голлум: «Мой precious — merge без конфликтов»" src="/upload/iblock/cdc/cdc6689fa9922f069447b2ac4ade8911.png" /></p>
+
+<p><strong>Содержание:</strong> <a href="#git">Git-схема</a> &middot; <a href="#xml">Почему XML</a> &middot; <a href="#code">Фрагменты кода</a> &middot; <a href="#build">Сборка .cfe</a> &middot; <a href="#checklist">Чек-лист</a> &middot; <a href="#roadmap">Планы</a> &middot; <a href="#contribute">Как контрибьютить</a> &middot; <a href="#firsttasks">Что сделать прямо сейчас</a> &middot; <a href="#links">Ссылки</a></p>
+
+<h2 id="audience">0. Для кого статья</h2>
+
+<ul>
+	<li><strong>Разработчики 1С</strong>, которым нужно поддерживать расширение сразу для нескольких конфигураций.</li>
+	<li><strong>Те, кто хочет &laquo;как в нормальном мире&raquo;</strong>: GitHub, релизы, воспроизводимая сборка, минимум ручных действий.</li>
+	<li><strong>Те, кто устал от EDT-артефактов</strong> и конфликтов, когда &laquo;вроде ничего не менял, а изменилось всё&raquo;.</li>
+</ul>
+
+<h2 id="git">1. Git &laquo;по-взрослому&raquo;: одно ядро и несколько веток конфигураций</h2>
+
+<p>Фраза <em>&laquo;main &mdash; это состояние души&raquo;</em> смешная ровно до первого релиза. Потом она становится правилом: <strong>в main живёт ядро</strong>, а ветки конфигураций периодически подтягивают изменения и собирают свои .cfe.</p>
+
+<h3>Структура веток</h3>
+
+<p>В репозитории держим несколько веток/сборок:</p>
+
+<ul>
+	<li><strong>main</strong> &mdash; ядро расширения: полная XML-выгрузка (включая <code>Configuration.xml</code> и <code>ConfigDumpInfo.xml</code>).</li>
+	<li><strong>UNF_Rozn</strong> &mdash; сборка для УНФ и Розницы.</li>
+	<li><strong>UNF_Rozn_Fresh</strong> &mdash; сборка для 1cfresh (отличается, в том числе, именем расширения).</li>
+	<li><strong>UT_KA_ERP</strong> &mdash; сборка для УТ, КА и ERP.</li>
+</ul>
+
+<p><strong>Где обычно отличия:</strong> в <code>xml/Configuration.xml</code> &mdash; имя конфигурации (<code>&lt;Name&gt;</code>) и иногда версия (<code>&lt;Version&gt;</code>). Всё остальное &mdash; как в main (если не было осознанного точечного отличия под конкретную конфигурацию).</p>
+
+<h3>Worktrees: &laquo;хочу видеть всё сразу&raquo;</h3>
+
+<p>Вместо вечного <code>git checkout</code> &mdash; отдельный worktree на каждую ветку. Это резко снижает количество &laquo;ой, я правил не там&raquo;.</p>
+
+<pre class="brush: bash">
+<code class="language-bash">git worktree add ../worktrees/UNF_Rozn UNF_Rozn
+git worktree add ../worktrees/UT_KA_ERP UT_KA_ERP
+</code></pre>
+
+<h3>Поток разработки (как живём каждый день)</h3>
+
+<ul>
+	<li><strong>Фичи и общая логика</strong> &mdash; делаем в <strong>main</strong>.</li>
+	<li><strong>Ветки конфигураций</strong> &mdash; периодически делают <code>git merge main</code>, разрешают конфликты по правилам и выпускают свой релиз.</li>
+	<li><strong>Редкие исключения</strong>: если правка нужна только одной конфигурации &mdash; она живёт в её ветке (и вы заранее понимаете, что на следующем merge это может дать конфликт).</li>
+</ul>
+
+<h3>Merge main &rarr; ветка конфигурации</h3>
+
+<p>Команды максимально скучные (а это хорошо):</p>
+
+<pre class="brush: bash">
+<code>cd worktrees/UNF_Rozn
+git merge main
+</code></pre>
+
+<h3>Конфликты: быстрые правила, чтобы не &laquo;вспоминать проект по ходу мержа&raquo;</h3>
+
+<p>Если Git не знает, кого любить &mdash; пусть любит ваши правила:</p>
+
+<ul>
+	<li><strong><code>xml/Configuration.xml</code></strong>: оставляем <strong>своё</strong> значение <code>&lt;Name&gt;</code> (и при необходимости <code>&lt;Version&gt;</code>) для ветки конфигурации.</li>
+	<li><strong><code>xml/ConfigDumpInfo.xml</code></strong>: оставляем свою версию/идентификаторы (или разрешаем по смыслу, если менялись осознанно).</li>
+	<li><strong>Модули, формы, общая логика</strong>: почти всегда берём из <strong>main</strong> (main &mdash; источник правды).</li>
+</ul>
+
+<p>Подробно (и тем же смыслом, но в формате &laquo;инструкции&raquo;) это уже оформлено в репозитории: <code>docs/MERGE.md</code>.</p>
+
+<h2 id="xml">2. Почему &laquo;чистая XML-выгрузка&raquo; выигрывает у EDT в таких репозиториях</h2>
+
+<p>EDT мы пробовали. Оно умеет многое, но для сценария &laquo;одно ядро &rarr; несколько веток конфигураций &rarr; частые мержи&raquo; цена оказывается слишком высокой.</p>
+
+<h3>Что обычно ломает кайф</h3>
+
+<ul>
+	<li><strong>Лишние артефакты</strong> в репозитории (служебные файлы, метаданные).</li>
+	<li><strong>Тяжёлый diff</strong>: &laquo;как понять, что реально изменилось?&raquo;</li>
+	<li><strong>Merge как квест</strong>: конфликтов больше, чем изменений.</li>
+</ul>
+
+<h3>Что делаем вместо</h3>
+
+<p>Храним расширение в <strong>чистой XML-выгрузке</strong> (каталог <code>xml/</code>). В результате:</p>
+
+<ul>
+	<li>diff читается глазами разработчика 1С;</li>
+	<li>merge становится процедурой, а не приключением;</li>
+	<li>репозиторий остаётся прозрачным (без &laquo;а это что за файл?&raquo;).</li>
+</ul>
+
+<p>Следы эпохи EDT обычно выглядят так (и да, их лучше игнорировать):</p>
+
+<pre class="brush: text">
+<code class="language-bash"># EDT/Eclipse служебные файлы
+.metadata/
+.project
+.classpath
+.settings/
+*.launch
+</code></pre>
+
+<h2 id="code">3. Как выглядит код: два фрагмента, чтобы было &laquo;осязаемо&raquo;</h2>
+
+<p>Ниже &mdash; пара кусочков из расширения: серверный вызов к API и клиентская часть с длительной операцией. Это не &laquo;идеальный эталон&raquo;, а понятный скелет, который работает и хорошо мержится.</p>
+
+<h3>Сервер: HTTP + JSON, получение ответа и нормальная ошибка</h3>
+
+<pre class="brush: 1c">
+<code class="language-onec8">Функция ОтправитьЗапрос(Промт) Экспорт
+	
+	СтрокаJSON = СериализоватьЗапросВJSON(Промт);
+	Соединение = ПолучитьHTTPСоединение();   
+	Запрос = Новый HTTPЗапрос(ПолучитьПутьChatCompletions(), ПолучитьHTTPЗаголовки());  
+	
+	Запрос.УстановитьТелоИзСтроки(СтрокаJSON);
+	Результат = Соединение.ОтправитьДляОбработки(Запрос); //POST
+		
+	Если Результат.КодСостояния=200 Тогда 
+		ЧтениеJson = Новый ЧтениеJson;
+		ЧтениеJson.УстановитьСтроку(Результат.ПолучитьТелоКакСтроку());
+		РезСтруктура = ПрочитатьJSON(ЧтениеJson);
+		
+		МассивРезультатов = РезСтруктура["choices"];			
+		Если МассивРезультатов &lt;&gt; Неопределено 
+			И МассивРезультатов.Количество() 
+			И ТипЗнч(МассивРезультатов[0]) = Тип("Структура")
+			И МассивРезультатов[0]["message"] &lt;&gt; Неопределено
+			И ТипЗнч(МассивРезультатов[0]["message"]) = Тип("Структура") Тогда
+			Ответ = СокрЛП(МассивРезультатов[0]["message"]["content"]);	
+		Конецесли;
+	Иначе 
+		СообщениеобОшибке = "Не удалось получить ответ. Код ошибки: "+Результат.КодСостояния +" "+ Результат.ПолучитьТелоКакСтроку();  
+		ВызватьИсключение СообщениеобОшибке;
+	КонецЕсли; 
+	
+	Возврат Ответ;
+	
+КонецФункции  
+
+Функция СериализоватьЗапросВJSON(ТекстЗапроса)	
+	Настройки = НастройкаПоУмолчанию();
+	Сообщения = Новый Массив;
+	Сообщение = Новый Структура;
+	Сообщение.Вставить("role", "user"); 
+	Сообщение.Вставить("content", ТекстЗапроса); 
+	Сообщения.Добавить(Сообщение); 
+	
+	Структура = Новый Структура;
+	Модель = Настройки.МодельИИ;
+	Если НЕ ЗначениеЗаполнено(Модель) Тогда
+		Модель = "auto";
+	КонецЕсли;
+	Структура.Вставить("model", Модель);
+	Структура.Вставить("messages", Сообщения);
+	
+	ЗаписьJSON = Новый ЗаписьJSON;
+	ЗаписьJSON.УстановитьСтроку();
+	ЗаписатьJSON(ЗаписьJSON,Структура);
+	
+	Возврат ЗаписьJSON.Закрыть();
+	
+КонецФункции
+</code></pre>
+
+<h3>Клиент: длительная операция, чтобы форма не зависала</h3>
+
+<p>Когда пользователь нажимает &laquo;Заполнить ИИ&raquo;, запрос может выполняться заметно долго. Поэтому &mdash; длительная операция: запускаем на сервере и ждём с окном ожидания.</p>
+
+<pre class="brush: 1c">
+<code class="language-onec8">&amp;НаКлиенте
+Процедура GPT_ЗаполнитьОписание(Команда)  
+	
+	СостояниеНастроек = GPT_ОбщийВызовСервера.GPT_СостояниеНастроек();
+	Если НЕ СостояниеНастроек.Готово Тогда
+		ОткрытьФорму("ОбщаяФорма.GPT_Регистрация", , ЭтотОбъект, , , , , РежимОткрытияОкнаФормы.БлокироватьОкноВладельца);
+		Возврат;
+	КонецЕсли;
+	
+	GPT_ОтправитьЗапросНаСервере();
+	
+	ОписаниеОповещения = Новый ОписаниеОповещения("ПолучениеОтветаChatGPT", ЭтотОбъект);
+	ПараметрыОжидания = ДлительныеОперацииКлиент.ПараметрыОжидания(ЭтотОбъект);
+	ПараметрыОжидания.ВыводитьОкноОжидания = Истина;
+	ДлительныеОперацииКлиент.ОжидатьЗавершение(ЭтаФорма.GPT_ДлительнаяОперация, ОписаниеОповещения, ПараметрыОжидания);	
+
+КонецПроцедуры
+
+&amp;НаСервере
+Функция GPT_ОтправитьЗапросНаСервере()
+	
+	ПараметрыВыполнения = ДлительныеОперации.ПараметрыВыполненияФункции(Новый УникальныйИдентификатор);
+	ПараметрыВыполнения.ОжидатьЗавершение = Ложь; 
+
+	ЭтаФорма.GPT_ДлительнаяОперация = ДлительныеОперации.ВыполнитьФункцию(
+		ПараметрыВыполнения,
+		"GPT_ОбщийМодульСервер.СгенерироватьОписаниеИДопСвойстваНоменклатуры",
+		Объект.Ссылка
+	); 
+		
+КонецФункции
+</code></pre>
+
+<h2 id="build">4. Автоматизация сборки: .cfe без рутины &laquo;LoadCfg / UpdateDBCfg вручную&raquo;</h2>
+
+<p>Ручная сборка .cfe &mdash; это десятки одинаковых действий, умноженные на количество веток. Автоматизация убирает человеческий фактор: скрипт делает всё одинаково каждый раз.</p>
+
+<p><strong>Типовая схема:</strong> main &rarr; merge в ветки &rarr; скрипт собирает .cfe для каждой ветки &rarr; (опционально) можно повесить на CI.</p>
+
+<h3>Пример скрипта (PowerShell): параметры</h3>
+
+<p>Смысл простой: путь к платформе, строка подключения, путь к XML, куда положить .cfe, имя расширения и флаги.</p>
+
+<pre class="brush: powershell">
+<code class="language-bash">param(
+    [string]$PlatformExe = 'C:\Program Files\1cv8\8.5.1.1150\bin\1cv8.exe',
+    [string]$ConnectionString = '',
+    [string]$XmlPath = (Join-Path (Split-Path $PSScriptRoot -Parent) 'xml'),
+    [string]$ExtensionCfePath = (Join-Path (Split-Path $PSScriptRoot -Parent) 'bin\Расширение.cfe'),
+    [string]$ExtensionName = 'GPT_ОписаниеНоменклатуры',
+    [switch]$BuildFromXml,
+    [switch]$SkipLoadExtension,
+    [switch]$SkipDbUpdate,
+    [switch]$SkipRunClient,
+    [switch]$Wait
+)
+</code></pre>
+
+<h3>Сборка .cfe из XML: два вызова DESIGNER</h3>
+
+<pre class="brush: powershell">
+<code class="language-bash"># Сборка .cfe из xml (если -BuildFromXml)
+if ($BuildFromXml) {
+    $xmlFullPath = [System.IO.Path]::GetFullPath($XmlPath)
+    $loadXmlArgs = $baseArgs + @('/LoadConfigFromFiles', $xmlFullPath, '-Extension', $ExtensionName)
+    Invoke-Platform -Arguments $loadXmlArgs -OperationName 'Сборка: загрузка расширения из XML в конфигурацию'
+
+    $dumpArgs = $baseArgs + @('/DumpCfg', $cfeFullPath, '-Extension', $ExtensionName)
+    Invoke-Platform -Arguments $dumpArgs -OperationName 'Сборка: выгрузка расширения в .cfe'
+}
+</code></pre>
+
+<h3>Загрузка .cfe и обновление БД (если нужно)</h3>
+
+<pre class="brush: powershell">
+<code class="language-bash">$loadArgs = $baseArgs + @('/LoadCfg', $cfeFullPath, '-Extension', $ExtensionName)
+Invoke-Platform -Arguments $loadArgs -OperationName 'Загрузка расширения из .cfe в конфигурацию'
+
+$updateArgs = $baseArgs + @('/UpdateDBCfg', '-Extension', $ExtensionName)
+Invoke-Platform -Arguments $updateArgs -OperationName 'Обновление конфигурации БД'
+</code></pre>
+
+<p>Полный цикл одной командой обычно выглядит так: <code>.\update-extension-and-run-db.ps1 -BuildFromXml</code>. Скрипт соберёт, загрузит, обновит (если не отключено) и может запустить клиент (если предусмотрено вашей обвязкой).</p>
+
+<h2 id="checklist">5. Мини-чек-лист релиза (чтобы не держать всё в голове)</h2>
+
+<ul>
+	<li><strong>В main</strong>: влитые фичи/фиксы, при необходимости обновлён <code>&lt;Version&gt;</code> в <code>xml/Configuration.xml</code>.</li>
+	<li><strong>В ветке конфигурации</strong>: <code>git merge main</code> + конфликты по правилам (имя/версия свои, логика из main).</li>
+	<li><strong>Сборка</strong>: скрипт &rarr; получаем .cfe (и при необходимости прогоняем установку в тестовой базе).</li>
+	<li><strong>Публикация</strong>: релиз в GitHub (отдельно на каждую ветку/сборку).</li>
+</ul>
+
+<h2 id="roadmap">6. Планы по развитию</h2>
+
+<p>Самое очевидное следующее улучшение &mdash; <strong>автоматизированное тестирование</strong>, чтобы релизы не держались на &laquo;проверил руками и вроде ок&raquo;.</p>
+
+<ul>
+	<li><strong>Автотест сборки</strong>: воспроизводимая сборка <code>.cfe</code> из <code>xml/</code> (скриптом) в CI.</li>
+	<li><strong>Smoke-тест установки</strong>: установка/обновление расширения в тестовой базе и проверка, что оно подключилось без ошибок.</li>
+	<li><strong>Проверка базовых сценариев</strong>: &laquo;кнопка есть&raquo;, &laquo;запрос ушёл&raquo;, &laquo;ошибка показывается понятно&raquo; (минимум, который ловит регрессии).</li>
+</ul>
+
+<h2 id="contribute">7. Как контрибьютить (быстро и без боли)</h2>
+
+<ul>
+	<li><strong>Нашли баг / есть идея</strong>: создайте issue в репозитории &mdash; <a href="https://github.com/msrv-tech/1c-ai-autofill/issues">Issues</a>. Если хочется обсудить до реализации &mdash; <a href="https://github.com/msrv-tech/1c-ai-autofill/discussions">Discussions</a>.</li>
+	<li><strong>Хотите сделать PR</strong>: начните с <a href="https://github.com/msrv-tech/1c-ai-autofill/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> и посмотрите правила мержа веток в <a href="https://github.com/msrv-tech/1c-ai-autofill/blob/main/docs/MERGE.md">docs/MERGE.md</a>.</li>
+	<li><strong>Локальный запуск/сборка</strong>: готовый скрипт &mdash; <a href="https://github.com/msrv-tech/1c-ai-autofill/blob/main/automation/update-extension-and-run-db.ps1">automation/update-extension-and-run-db.ps1</a> (и короткая инструкция &mdash; <a href="https://github.com/msrv-tech/1c-ai-autofill/blob/main/automation/README.md">automation/README.md</a>).</li>
+</ul>
+
+<p><strong>Мини-онбординг:</strong> форк &rarr; ветка/изменения &rarr; PR. Если вы делаете правки общей логики &mdash; целимся в <strong>main</strong>; ветки конфигураций подтягивают изменения мерджем.</p>
+
+<h2 id="firsttasks">8. Что можно сделать прямо сейчас (идеи для первого вклада)</h2>
+
+<ul>
+	<li><strong>Документация</strong>: улучшить разделы &laquo;быстрый старт&raquo;, &laquo;частые ошибки&raquo;, &laquo;как собрать .cfe&raquo; и &laquo;как добавить поддержку новой конфигурации&raquo;.</li>
+	<li><strong>Автотесты/CI</strong>: добавить workflow, который собирает <code>.cfe</code> из <code>xml/</code>, а также smoke-проверки установки/обновления в тестовой базе.</li>
+	<li><strong>Улучшение DX</strong>: сделать понятнее сообщения об ошибках (HTTP/JSON/настройки), добавить диагностический режим/логирование (без лишнего шума).</li>
+	<li><strong>UI/UX в формах</strong>: мелкие улучшения размещения команд/кнопок/подсказок, чтобы пользователю было проще начать.</li>
+	<li><strong>Быстрые задачи</strong>: берите подборку <a href="https://github.com/msrv-tech/1c-ai-autofill/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22">good first issue</a> и <a href="https://github.com/msrv-tech/1c-ai-autofill/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22">help wanted</a>.</li>
+</ul>
+
+<h2 id="links">Ссылки</h2>
+
+<ul>
+	<li><strong>Репозиторий:</strong> <a href="https://github.com/msrv-tech/1c-ai-autofill">msrv-tech/1c-ai-autofill</a></li>
+	<li><strong>Релизы (.cfe):</strong> <a href="https://github.com/msrv-tech/1c-ai-autofill/releases">GitHub Releases</a></li>
+</ul>
+
+<h2 id="outro">Заключение</h2>
+
+<p>Опенсорс на 1С &mdash; это не &laquo;страшно и больно&raquo;, если у вас предсказуемая структура: <strong>main как ядро</strong>, <strong>ветки как сборки</strong>, <strong>чистая XML-выгрузка</strong> и <strong>скрипт сборки</strong>. Остальное &mdash; дисциплина и пару раз пережить первый merge.</p>

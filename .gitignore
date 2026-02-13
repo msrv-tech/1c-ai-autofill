@@ -32,8 +32,13 @@ Thumbs.db
 bin/
 automation/logs/
 
+# Локальные инструменты сборки (pandoc, wkhtmltopdf)
+docs/tools/
+
 # Локальная конфигурация (строка подключения к 1С)
 .env
 
-# Черновики публикаций (Infostart и т.п.)
-infostart/
+# Локальная конфигурация сборки (базы по веткам)
+automation/build-config.json
+automation/build-config.local.json
+
