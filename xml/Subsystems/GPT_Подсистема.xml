@@ -13,11 +13,16 @@
 			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<IncludeInCommandInterface>false</IncludeInCommandInterface>
 			<UseOneCommand>true</UseOneCommand>
-			<Explanation/>
+			<Explanation>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подсистема для автоматической генерации описания номенклатуры с помощью нейросетевых моделей. Включает настройки API, выбор модели ИИ, настройку промтов для описания и дополнительных свойств.</v8:content>
+				</v8:item>
+			</Explanation>
 			<Picture/>
 			<Content>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.GPT_ОбщийМодульСервер</xr:Item>
-				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.GPT_ОбщийМодульКлиент</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">7acd0f1b-1f74-4917-8959-ec27f5e227aa</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.GPT_ОбщийВызовСервера</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Role.GPT_ОсновнаяРоль</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.GPT_ОткрытьНастройки</xr:Item>

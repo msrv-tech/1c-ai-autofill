@@ -37,14 +37,14 @@
 			<Synonym>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>GPT описание номенклатуры</v8:content>
+					<v8:content>MSRV.tech: Заполнение описания номенклатуры нейросетью. Расширение для Розница и УНФ, редакция 2.0</v8:content>
 				</v8:item>
 			</Synonym>
 			<Comment/>
 			<ConfigurationExtensionPurpose>AddOn</ConfigurationExtensionPurpose>
 			<KeepMappingToExtendedConfigurationObjectsByIDs>true</KeepMappingToExtendedConfigurationObjectsByIDs>
 			<NamePrefix>GPT_</NamePrefix>
-			<ConfigurationExtensionCompatibilityMode>Version8_3_17</ConfigurationExtensionCompatibilityMode>
+			<ConfigurationExtensionCompatibilityMode>Version8_5_1</ConfigurationExtensionCompatibilityMode>
 			<DefaultRunMode>ManagedApplication</DefaultRunMode>
 			<UsePurposes>
 				<v8:Value xsi:type="app:ApplicationUsePurpose">PlatformApplication</v8:Value>
@@ -53,23 +53,47 @@
 			<DefaultRoles>
 				<xr:Item xsi:type="xr:MDObjectRef">Role.GPT_ОсновнаяРоль</xr:Item>
 			</DefaultRoles>
-			<Vendor/>
-			<Version>1.8.7</Version>
+			<Vendor>ООО "Манжела"</Vendor>
+			<Version>2.0.1</Version>
 			<Caption/>
 			<ShortCaption/>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
-			<BriefInformation/>
-			<DetailedInformation/>
-			<Copyright/>
-			<VendorInformationAddress/>
-			<ConfigurationInformationAddress/>
+			<BriefInformation>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Расширение для автоматической генерации описания номенклатуры с помощью нейросети. Работает с конфигурациями Розница и УНФ.</v8:content>
+				</v8:item>
+			</BriefInformation>
+			<DetailedInformation>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Расширение добавляет на форму элемента справочника Номенклатура возможность автоматической генерации описания товара с помощью нейросетевых моделей через API. Поддерживает заполнение дополнительных реквизитов и сведений.</v8:content>
+				</v8:item>
+			</DetailedInformation>
+			<Copyright>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ООО "Манжела"</v8:content>
+				</v8:item>
+			</Copyright>
+			<VendorInformationAddress>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>https://msrv.tech</v8:content>
+				</v8:item>
+			</VendorInformationAddress>
+			<ConfigurationInformationAddress>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>https://gitsell.ru/msrv-tech/1c-ai-autofill</v8:content>
+				</v8:item>
+			</ConfigurationInformationAddress>
 		</Properties>
 		<ChildObjects>
 			<Language>Русский</Language>
 			<Subsystem>GPT_Подсистема</Subsystem>
 			<Role>GPT_ОсновнаяРоль</Role>
 			<CommonModule>GPT_ОбщийМодульСервер</CommonModule>
-			<CommonModule>GPT_ОбщийМодульКлиент</CommonModule>
 			<CommonModule>GPT_ОбщийВызовСервера</CommonModule>
 			<CommonModule>УправлениеСвойствами</CommonModule>
 			<CommonModule>GPT_GitsellСервер</CommonModule>
