@@ -103,6 +103,16 @@ def main(argv: list[str] | None = None) -> int:
         help="Путь к wkhtmltopdf.exe (если не в PATH). Можно через env WKHTMLTOPDF_PATH.",
     )
     ap.add_argument("--keep-html", action="store_true", help="Не удалять промежуточный HTML (для отладки)")
+    ap.add_argument(
+        "--title-page",
+        default=None,
+        help="Путь к отдельному .md с титульным листом (будет вставлен первым)",
+    )
+    ap.add_argument(
+        "--version",
+        default=None,
+        help="Версия для колонтитула на каждой странице PDF (например: 2.0.1)",
+    )
     args = ap.parse_args(argv)
 
     script_dir = Path(__file__).resolve().parent
@@ -146,6 +156,12 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     md_text = input_path.read_text(encoding="utf-8")
+    if args.title_page:
+        title_path = Path(args.title_page)
+        if not title_path.exists():
+            _fail(f"Не найден файл титульного листа: {title_path}")
+        title_content = title_path.read_text(encoding="utf-8")
+        md_text = title_content + "\n\n<div style=\"page-break-after: always;\"></div>\n\n" + md_text
     title = "Руководство пользователя"  # для metadata title
 
     keep_html = bool(args.keep_html)
@@ -194,26 +210,35 @@ def main(argv: list[str] | None = None) -> int:
                 "Установите pandoc и добавьте в PATH, либо укажите путь через --pandoc / env PANDOC_PATH."
             )
 
-        try:
-            _run_checked(
+        wkhtml_cmd = [
+            wkhtml_exe,
+            "--enable-local-file-access",
+            "--page-size",
+            "A4",
+            "--margin-top",
+            "20mm",
+            "--margin-bottom",
+            "25mm",
+            "--margin-left",
+            "25mm",
+            "--margin-right",
+            "15mm",
+        ]
+        if args.version:
+            wkhtml_cmd.extend(
                 [
-                    wkhtml_exe,
-                    "--enable-local-file-access",
-                    "--page-size",
-                    "A4",
-                    "--margin-top",
-                    "20mm",
-                    "--margin-bottom",
-                    "20mm",
-                    "--margin-left",
-                    "25mm",
-                    "--margin-right",
-                    "15mm",
-                    str(html_tmp),
-                    str(pdf_tmp),
-                ],
-                what="html -> pdf (wkhtmltopdf)",
+                    "--footer-center",
+                    f"Версия {args.version}",
+                    "--footer-font-size",
+                    "9",
+                    "--footer-spacing",
+                    "5",
+                ]
             )
+        wkhtml_cmd.extend([str(html_tmp), str(pdf_tmp)])
+
+        try:
+            _run_checked(wkhtml_cmd, what="html -> pdf (wkhtmltopdf)")
         except ToolError as e:
             _fail(
                 str(e)

@@ -104,3 +104,83 @@ hr {
 .no-indent {
     margin-left: 0;
 }
+
+/* Титульный лист — по центру страницы, крупный шрифт, отдельная страница */
+.title-page {
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    page-break-after: always;
+    padding: 2em 1em;
+}
+.title-page h1 {
+    font-size: 26pt;
+    font-weight: bold;
+    margin: 0.4em 0;
+}
+.title-page p {
+    font-size: 14pt;
+    margin: 0.35em 0;
+}
+.title-page strong {
+    font-size: 18pt;
+    font-weight: bold;
+    margin: 0.4em 0;
+}
+.title-page em {
+    font-size: 12pt;
+    font-style: italic;
+}
+
+/* Страница право тиражирования (второй лист) — отдельная страница */
+.copyright-page {
+    page-break-after: always;
+    padding: 2em 1em;
+}
+.copyright-header {
+    text-align: center;
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+.copyright-agreement {
+    text-align: center;
+    font-size: 11pt;
+    margin: 2em 1em 0;
+    line-height: 1.5;
+}
+.copyright-authors {
+    margin-top: 2.5em;
+    font-size: 11pt;
+}
+.copyright-contact {
+    margin: 0.3em 0;
+    font-size: 11pt;
+}
+
+/* Линия консультаций — на отдельной странице (3-й лист) */
+.consultation-page {
+    page-break-after: always;
+    font-size: 11pt;
+    line-height: 1.4;
+}
+.consultation-title {
+    text-align: center;
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+.consultation-page ol {
+    margin: 0.5em 0 1em 1.5em;
+}
+.consultation-page p {
+    margin: 0.6em 0;
+}
+
+/* Оглавление — на отдельной странице */
+.toc-page {
+    page-break-after: always;
+}
