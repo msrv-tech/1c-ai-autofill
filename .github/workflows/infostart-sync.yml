@@ -7,8 +7,6 @@ on:
         description: 'Force upload even if versions match'
         type: boolean
         default: false
-  release:
-    types: [published]
 
 jobs:
   sync:
