@@ -7,6 +7,10 @@ on:
         description: 'Force upload even if versions match'
         type: boolean
         default: false
+  # Workaround: явно исключаем push — иначе GitHub по багу запускает workflow_dispatch при push
+  push:
+    branches-ignore:
+      - '**'
 
 jobs:
   sync:
