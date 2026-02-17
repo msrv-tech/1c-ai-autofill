@@ -38,7 +38,7 @@ jobs:
             exit 0
           fi
 
-          LATEST_RELEASE=$(gh release list --limit 20 | grep "UNF_Rozn" | head -n 1 | awk '{print $1}')
+          LATEST_RELEASE=$(gh release list --limit 20 | grep "UNF_Rozn_" | head -n 1 | awk '{print $1}')
 
           if [ -z "$LATEST_RELEASE" ]; then
             echo "No UNF_Rozn release found."
@@ -80,7 +80,7 @@ jobs:
             exit 0
           fi
 
-          LATEST_RELEASE=$(gh release list --limit 20 | grep "UT_KA_ERP" | head -n 1 | awk '{print $1}')
+          LATEST_RELEASE=$(gh release list --limit 20 | grep "UT_KA_ERP_" | head -n 1 | awk '{print $1}')
 
           if [ -z "$LATEST_RELEASE" ]; then
             echo "No UT_KA_ERP release found."
