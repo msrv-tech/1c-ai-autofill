@@ -38,18 +38,19 @@ jobs:
             exit 0
           fi
 
-          LATEST_RELEASE=$(gh release list --limit 20 | grep "UNF_Rozn_" | head -n 1 | awk '{print $1}')
+          LATEST_TAG=$(gh release list --limit 50 --json tagName,createdAt \
+            --jq '.[] | select(.tagName|startswith("UNF_Rozn_")) | .tagName' | head -n 1)
 
-          if [ -z "$LATEST_RELEASE" ]; then
+          if [ -z "$LATEST_TAG" ]; then
             echo "No UNF_Rozn release found."
             exit 0
           fi
 
-          VERSION=$(echo "$LATEST_RELEASE" | sed 's/UNF_Rozn_//')
-          echo "Latest UNF_Rozn release: $LATEST_RELEASE (Version: $VERSION)"
+          VERSION="${LATEST_TAG#UNF_Rozn_}"
+          echo "Latest UNF_Rozn release tag: $LATEST_TAG (Version: $VERSION)"
 
           mkdir -p dist/unf
-          gh release download "$LATEST_RELEASE" --pattern "*.cfe" --dir dist/unf --clobber
+          gh release download "$LATEST_TAG" --pattern "*.cfe" --dir dist/unf --clobber
 
           CFE_FILE=$(ls dist/unf/*.cfe 2>/dev/null | head -n 1)
 
@@ -80,18 +81,19 @@ jobs:
             exit 0
           fi
 
-          LATEST_RELEASE=$(gh release list --limit 20 | grep "UT_KA_ERP_" | head -n 1 | awk '{print $1}')
+          LATEST_TAG=$(gh release list --limit 50 --json tagName,createdAt \
+            --jq '.[] | select(.tagName|startswith("UT_KA_ERP_")) | .tagName' | head -n 1)
 
-          if [ -z "$LATEST_RELEASE" ]; then
+          if [ -z "$LATEST_TAG" ]; then
             echo "No UT_KA_ERP release found."
             exit 0
           fi
 
-          VERSION=$(echo "$LATEST_RELEASE" | sed 's/UT_KA_ERP_//')
-          echo "Latest UT_KA_ERP release: $LATEST_RELEASE (Version: $VERSION)"
+          VERSION="${LATEST_TAG#UT_KA_ERP_}"
+          echo "Latest UT_KA_ERP release tag: $LATEST_TAG (Version: $VERSION)"
 
           mkdir -p dist/ut
-          gh release download "$LATEST_RELEASE" --pattern "*.cfe" --dir dist/ut --clobber
+          gh release download "$LATEST_TAG" --pattern "*.cfe" --dir dist/ut --clobber
 
           CFE_FILE=$(ls dist/ut/*.cfe 2>/dev/null | head -n 1)
 
