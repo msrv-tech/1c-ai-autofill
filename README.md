@@ -99,6 +99,7 @@
 Статьи на Infostart:
 - [Опенсорс на 1С без боли: Git worktrees, XML вместо EDT и сборка расширения в одну кнопку](https://infostart.ru/1c/articles/2611372/)
 - [1C AI Autofill — опенсорс-расширение 1С для заполнения описаний и реквизитов номенклатуры с помощью ИИ](https://infostart.ru/1c/articles/2614487/)
+- [Автоматизация публикации расширений 1С на Infostart через GitHub Actions](https://infostart.ru/1c/articles/2617735/)
 
 ---
 
