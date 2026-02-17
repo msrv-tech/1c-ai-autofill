@@ -1,0 +1,88 @@
+name: Sync with Infostart
+
+on:
+  workflow_dispatch:
+    inputs:
+      force_upload:
+        description: 'Force upload even if versions match'
+        type: boolean
+        default: false
+  release:
+    types: [published]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/python-4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Sync UNF_Rozn
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INFOSTART_URL: ${{ secrets.INFOSTART_URL_UNF }}
+        run: |
+          if [ -z "$INFOSTART_URL" ]; then
+            echo "INFOSTART_URL_UNF is not set. Skipping."
+          else
+            # Получаем последний релиз для UNF_Rozn
+            # Теги имеют формат UNF_Rozn_X.Y.Z
+            LATEST_RELEASE=$(gh release list --limit 10 | grep "UNF_Rozn" | head -n 1 | awk '{print $1}')
+            if [ -z "$LATEST_RELEASE" ]; then
+              echo "No UNF_Rozn release found."
+            else
+              VERSION=$(echo $LATEST_RELEASE | sed 's/UNF_Rozn_//')
+              echo "Latest UNF_Rozn release: $LATEST_RELEASE (Version: $VERSION)"
+              
+              # Скачиваем .cfe файл
+              gh release download $LATEST_RELEASE --pattern "*.cfe" --dir dist/unf
+              CFE_FILE=$(ls dist/unf/*.cfe | head -n 1)
+              
+              FORCE_OPT=""
+              if [ "${{ github.event.inputs.force_upload }}" == "true" ]; then
+                FORCE_OPT="--force"
+              fi
+              
+              python automation/infostart_updater.py --url "$INFOSTART_URL" --file "$CFE_FILE" --version "$VERSION" $FORCE_OPT
+            fi
+          fi
+
+      - name: Sync UT_KA_ERP
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INFOSTART_URL: ${{ secrets.INFOSTART_URL_UT }}
+        run: |
+          if [ -z "$INFOSTART_URL" ]; then
+            echo "INFOSTART_URL_UT is not set. Skipping."
+          else
+            # Получаем последний релиз для UT_KA_ERP
+            # Теги имеют формат UT_KA_ERP_X.Y.Z
+            LATEST_RELEASE=$(gh release list --limit 10 | grep "UT_KA_ERP" | head -n 1 | awk '{print $1}')
+            if [ -z "$LATEST_RELEASE" ]; then
+              echo "No UT_KA_ERP release found."
+            else
+              VERSION=$(echo $LATEST_RELEASE | sed 's/UT_KA_ERP_//')
+              echo "Latest UT_KA_ERP release: $LATEST_RELEASE (Version: $VERSION)"
+              
+              # Скачиваем .cfe файл
+              gh release download $LATEST_RELEASE --pattern "*.cfe" --dir dist/ut
+              CFE_FILE=$(ls dist/ut/*.cfe | head -n 1)
+              
+              FORCE_OPT=""
+              if [ "${{ github.event.inputs.force_upload }}" == "true" ]; then
+                FORCE_OPT="--force"
+              fi
+              
+              python automation/infostart_updater.py --url "$INFOSTART_URL" --file "$CFE_FILE" --version "$VERSION" $FORCE_OPT
+            fi
+          fi

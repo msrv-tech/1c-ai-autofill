@@ -1,0 +1,81 @@
+<h1>Автоматизация публикации расширений 1С на Infostart через GitHub Actions</h1>
+
+<p>В этой статье я расскажу, как настроить автоматическое обновление файлов поставки на Infostart сразу после создания релиза в GitHub. Больше не нужно вручную скачивать <code>.cfe</code> и загружать его через браузер.</p>
+
+<h2>Зачем это нужно?</h2>
+
+<p>Когда проект растет и конфигураций становится много (УНФ, Розница, УТ, ERP), рутинный процесс выпуска релиза начинает занимать слишком много времени. Автоматизация позволяет:</p>
+<ul>
+	<li>Исключить ошибки &laquo;человеческого фактора&raquo; (загрузили не тот файл).</li>
+	<li>Сократить время доставки обновлений до пользователей.</li>
+	<li>Держать актуальные версии на всех площадках одновременно.</li>
+</ul>
+
+<h3>Мем-пауза: Когда релиз готов, а загружать лень</h3>
+
+<p><strong>Промт для генерации мема (например, в Midjourney или DALL-E):</strong><br />
+<em>"A tired 1C programmer sitting in front of a computer with a 'Release 1.8.8' button on one side and a mountain of manual upload forms on the other. A small robot (GitHub Action) flying over and doing the job. Digital art style, office environment, humorous mood."</em></p>
+
+<p><img alt="GitHub Action спасает разработчика от рутины" src="https://img.shields.io/badge/GitHub_Actions-Automation-blue?style=for-the-badge&logo=github-actions" /></p>
+
+<h2>Как это работает</h2>
+
+<p>Процесс состоит из трех компонентов:</p>
+<ol>
+	<li><strong>GitHub Release</strong>: Источник файлов. Скрипт берет <code>.cfe</code> из активов последнего релиза.</li>
+	<li><strong>Python-скрипт</strong>: &laquo;Мозг&raquo; системы, который умеет общаться с API Infostart.</li>
+	<li><strong>GitHub Actions</strong>: &laquo;Двигатель&raquo;, который запускает процесс по событию или вручную.</li>
+</ol>
+
+<h3>1. Python-скрипт для загрузки</h3>
+
+<p>Мы используем небольшой скрипт на Python, который отправляет POST-запрос на специальную ссылку обновления Infostart. Эта ссылка содержит уникальный хэш, позволяющий обновлять файл без полной авторизации в браузере.</p>
+
+<pre class="brush: python">
+<code class="language-python">import requests
+import argparse
+
+def upload_to_infostart(url, file_path, version):
+    with open(file_path, 'rb') as f:
+        files = {'file': f}
+        data = {'v': version}
+        response = requests.post(url, files=files, data=data)
+        if response.json().get('SUCCESS'):
+            print(f"Версия {version} успешно загружена!")</code></pre>
+
+<h3>2. Настройка GitHub Actions</h3>
+
+<p>Workflow настраивается так, чтобы срабатывать автоматически при публикации нового релиза. Он скачивает нужный файл из Assets и передает его в Python-скрипт.</p>
+
+<pre class="brush: yaml">
+<code class="language-yaml">on:
+  release:
+    types: [published]
+  workflow_dispatch: # Возможность ручного запуска
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync with Infostart
+        run: |
+          # Логика поиска последнего релиза и запуска скрипта
+          python automation/infostart_updater.py --url "${{ secrets.INFOSTART_URL_UNF }}" --file "dist/unf.cfe" --version "${{ env.VERSION }}"</code></pre>
+
+<h3>3. Безопасность (Secrets)</h3>
+
+<p>Самое важное &mdash; ссылки для обновления содержат секретные ключи. Мы храним их в <strong>GitHub Secrets</strong>. Это позволяет коду быть открытым, но при этом никто не сможет загрузить файлы в ваш профиль Infostart без доступа к настройкам репозитория.</p>
+
+<h2>Итог</h2>
+
+<p>Теперь процесс выпуска новой версии выглядит так:</p>
+<ol>
+	<li>Запускаем локальный скрипт сборки и создания релиза.</li>
+	<li>GitHub Actions подхватывает новый релиз и через 30 секунд файл уже обновлен на Infostart.</li>
+</ol>
+
+<p>Это освобождает время для более важных задач, чем &laquo;нажми кнопку в браузере&raquo;.</p>
+
+<hr />
+<p><em>Проект: <a href="https://github.com/msrv-tech/1c-ai-autofill">1C AI Autofill</a></em></p>
