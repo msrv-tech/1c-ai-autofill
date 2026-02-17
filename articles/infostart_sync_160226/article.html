@@ -42,13 +42,16 @@ def upload_to_infostart(url, file_path, version):
 
 <h3>2. Настройка GitHub Actions</h3>
 
-<p>Workflow настраивается так, чтобы срабатывать автоматически при публикации нового релиза. Он скачивает нужный файл из Assets и передает его в Python-скрипт.</p>
+<p>Workflow настраивается на ручной запуск и скачивает нужный файл из Assets последнего релиза, передавая его в Python-скрипт.</p>
 
 <pre class="brush: yaml">
 <code class="language-yaml">on:
-  release:
-    types: [published]
-  workflow_dispatch: # Возможность ручного запуска
+  workflow_dispatch:
+    inputs:
+      force_upload:
+        description: 'Force upload even if versions match'
+        type: boolean
+        default: false
 
 jobs:
   sync:
@@ -57,8 +60,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Sync with Infostart
         run: |
-          # Логика поиска последнего релиза и запуска скрипта
-          python automation/infostart_updater.py --url "${{ secrets.INFOSTART_URL_UNF }}" --file "dist/unf.cfe" --version "${{ env.VERSION }}"</code></pre>
+          # Получение последнего релиза через gh + JSON, скачивание .cfe, вызов infostart_updater.py
+          python automation/infostart_updater.py --url "${{ secrets.INFOSTART_URL_UNF }}" --file "dist/unf.cfe" --version "$VERSION"</code></pre>
+
+<p><em>Пока оставили только ручной запуск</em> (<code>workflow_dispatch</code>) &mdash; так проще контролировать момент синхронизации. Если нужна полная автоматизация, добавьте в <code>on:</code> блок <code>release: types: [published]</code>, и workflow будет запускаться при каждом создании релиза на GitHub.</p>
 
 <h3>3. Безопасность (Secrets)</h3>
 
@@ -73,8 +78,11 @@ jobs:
 <p>Теперь процесс выпуска новой версии выглядит так:</p>
 <ol>
 	<li>Запускаем локальный скрипт сборки и создания релиза.</li>
-	<li>GitHub Actions подхватывает новый релиз и через 30 секунд файл уже обновлен на Infostart.</li>
+	<li>В GitHub: Actions &rarr; Sync with Infostart &rarr; Run workflow.</li>
+	<li>Через 30 секунд файл уже обновлен на Infostart.</li>
 </ol>
+
+<p><img alt="Ручной запуск workflow Sync with Infostart в GitHub Actions" src="https://raw.githubusercontent.com/msrv-tech/1c-ai-autofill/main/articles/infostart_sync_160226/media/gh_2t_1.png" /></p>
 
 <p>Это освобождает время для более важных задач, чем &laquo;нажми кнопку в браузере&raquo;.</p>
 
