@@ -111,7 +111,12 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument(
         "--version",
         default=None,
-        help="Версия для колонтитула на каждой странице PDF (например: 2.0.1)",
+        help="Версия для колонтитула (не используется на титульном листе)",
+    )
+    ap.add_argument(
+        "--year",
+        default="2026 г.",
+        help="Год на титульном листе (по умолчанию: 2026 г.)",
     )
     args = ap.parse_args(argv)
 
@@ -162,7 +167,7 @@ def main(argv: list[str] | None = None) -> int:
             _fail(f"Не найден файл титульного листа: {title_path}")
         title_content = title_path.read_text(encoding="utf-8")
         md_text = title_content + "\n\n<div style=\"page-break-after: always;\"></div>\n\n" + md_text
-    title = "Руководство пользователя"  # для metadata title
+    title = ""  # Пусто — pandoc не добавляет "Руководство пользователя" вверху первой страницы
 
     keep_html = bool(args.keep_html)
     with tempfile.TemporaryDirectory(prefix="build_pdf_") as td:
@@ -224,11 +229,17 @@ def main(argv: list[str] | None = None) -> int:
             "--margin-right",
             "15mm",
         ]
-        if args.version:
+        footer_template = script_dir / "templates" / "footer.html"
+        if footer_template.exists():
+            footer_content = footer_template.read_text(encoding="utf-8").replace(
+                "YEAR_PLACEHOLDER", args.year
+            )
+            footer_tmp = td_path / "footer.html"
+            footer_tmp.write_text(footer_content, encoding="utf-8")
             wkhtml_cmd.extend(
                 [
-                    "--footer-center",
-                    f"Версия {args.version}",
+                    "--footer-html",
+                    str(footer_tmp),
                     "--footer-font-size",
                     "9",
                     "--footer-spacing",

@@ -31,6 +31,9 @@ Thumbs.db
 bin/
 automation/logs/
 
+# BSL Language Server (скачивается отдельно, >100MB для GitHub)
+automation/*.jar
+
 # Локальные инструменты сборки (pandoc, wkhtmltopdf)
 docs/tools/
 
